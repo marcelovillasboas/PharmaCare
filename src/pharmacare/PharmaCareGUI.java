@@ -27,17 +27,253 @@ public class PharmaCareGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        lblPrescriptionID = new javax.swing.JLabel();
+        lblPatientID = new javax.swing.JLabel();
+        txtPrescriptionID = new javax.swing.JTextField();
+        txtPatientID = new javax.swing.JTextField();
+        btnValidate = new javax.swing.JButton();
+        lblDoctorID = new javax.swing.JLabel();
+        txtDoctorID = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        txtPatientName = new javax.swing.JTextField();
+        lblPatientType = new javax.swing.JLabel();
+        txtPatientType = new javax.swing.JTextField();
+        lblDoctorName = new javax.swing.JLabel();
+        txtDoctorName = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        lblDrugName = new javax.swing.JLabel();
+        lblDose = new javax.swing.JLabel();
+        txtDose = new javax.swing.JTextField();
+        lblFrequency = new javax.swing.JLabel();
+        cmbFrequency = new javax.swing.JComboBox<>();
+        lblStartDate = new javax.swing.JLabel();
+        txtStartDate = new javax.swing.JTextField();
+        lblEndDate = new javax.swing.JLabel();
+        txtEndDate = new javax.swing.JTextField();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        lblStatus = new javax.swing.JLabel();
+        lblPrescriptionDetails = new javax.swing.JLabel();
+        btnAdd = new javax.swing.JButton();
+        btnEdit = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        btnExit = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        btnSubmit = new javax.swing.JButton();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        lblPrescriptionID.setText("Prescription ID");
+
+        lblPatientID.setText("Patient ID");
+
+        txtPrescriptionID.setEditable(false);
+
+        btnValidate.setText("Validate");
+
+        lblDoctorID.setText("Doctor ID");
+
+        jLabel1.setText("Patient's Name");
+
+        txtPatientName.setEditable(false);
+
+        lblPatientType.setText("Patient's Type");
+
+        txtPatientType.setEditable(false);
+
+        lblDoctorName.setText("Doctor's Name");
+
+        txtDoctorName.setEditable(false);
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Paracetamol", "Panadol", "Xanax", "Clonazepan" }));
+
+        lblDrugName.setText("Drug Name");
+
+        lblDose.setText("Dose");
+
+        lblFrequency.setText("Frequency");
+
+        cmbFrequency.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Once a day", "Twice a day", "Three times a day", "Once a week", "Twice a week" }));
+
+        lblStartDate.setText("Start Date");
+
+        lblEndDate.setText("End Date");
+
+        jCheckBox1.setText(" Active");
+
+        lblStatus.setText("Status");
+
+        lblPrescriptionDetails.setText("Prescription Details");
+
+        btnAdd.setText("Add Line");
+
+        btnEdit.setText("Edit Line");
+
+        btnDelete.setText("Delete Line");
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
+
+        btnExit.setText("Exit");
+
+        jButton1.setText("Check Cocktail");
+
+        btnSubmit.setText("Submit");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(lblPrescriptionDetails)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAdd)
+                        .addGap(15, 15, 15)
+                        .addComponent(btnEdit)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnDelete))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblDoctorID)
+                                .addGap(440, 440, 440))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblPrescriptionID)
+                                    .addComponent(lblPatientID)
+                                    .addComponent(lblDrugName)
+                                    .addComponent(lblFrequency)
+                                    .addComponent(lblStatus))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jCheckBox1)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(cmbFrequency, javax.swing.GroupLayout.Alignment.LEADING, 0, 1, Short.MAX_VALUE)
+                                                .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                        .addGap(216, 216, 216)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblStartDate)
+                                            .addComponent(lblDose)
+                                            .addComponent(lblEndDate))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 175, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtPatientID)
+                                            .addComponent(txtDoctorID)
+                                            .addComponent(txtPrescriptionID))
+                                        .addGap(59, 59, 59)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(lblDoctorName)
+                                            .addComponent(jLabel1)
+                                            .addComponent(lblPatientType))
+                                        .addGap(18, 18, 18)))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtPatientName, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
+                            .addComponent(txtPatientType)
+                            .addComponent(txtDoctorName)
+                            .addComponent(txtStartDate, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtEndDate)
+                            .addComponent(txtDose)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnValidate))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnExit)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSubmit)))
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPrescriptionID)
+                    .addComponent(txtPrescriptionID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtPatientName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPatientID)
+                    .addComponent(txtPatientID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPatientType)
+                    .addComponent(txtPatientType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDoctorID)
+                    .addComponent(txtDoctorID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDoctorName)
+                    .addComponent(txtDoctorName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnValidate)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblDrugName)
+                            .addComponent(lblDose)
+                            .addComponent(txtDose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblStartDate)
+                            .addComponent(txtStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblFrequency)
+                            .addComponent(cmbFrequency, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblEndDate)
+                            .addComponent(txtEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCheckBox1)
+                            .addComponent(lblStatus))
+                        .addGap(38, 38, 38)
+                        .addComponent(lblPrescriptionDetails))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnAdd)
+                        .addComponent(btnDelete)
+                        .addComponent(btnEdit)))
+                .addGap(32, 32, 32)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnExit)
+                    .addComponent(jButton1)
+                    .addComponent(btnSubmit))
+                .addContainerGap())
         );
 
         pack();
@@ -79,5 +315,41 @@ public class PharmaCareGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnEdit;
+    private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnSubmit;
+    private javax.swing.JButton btnValidate;
+    private javax.swing.JComboBox<String> cmbFrequency;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JLabel lblDoctorID;
+    private javax.swing.JLabel lblDoctorName;
+    private javax.swing.JLabel lblDose;
+    private javax.swing.JLabel lblDrugName;
+    private javax.swing.JLabel lblEndDate;
+    private javax.swing.JLabel lblFrequency;
+    private javax.swing.JLabel lblPatientID;
+    private javax.swing.JLabel lblPatientType;
+    private javax.swing.JLabel lblPrescriptionDetails;
+    private javax.swing.JLabel lblPrescriptionID;
+    private javax.swing.JLabel lblStartDate;
+    private javax.swing.JLabel lblStatus;
+    private javax.swing.JTextField txtDoctorID;
+    private javax.swing.JTextField txtDoctorName;
+    private javax.swing.JTextField txtDose;
+    private javax.swing.JTextField txtEndDate;
+    private javax.swing.JTextField txtPatientID;
+    private javax.swing.JTextField txtPatientName;
+    private javax.swing.JTextField txtPatientType;
+    private javax.swing.JTextField txtPrescriptionID;
+    private javax.swing.JTextField txtStartDate;
     // End of variables declaration//GEN-END:variables
 }
