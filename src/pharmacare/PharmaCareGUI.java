@@ -14,15 +14,12 @@ import javax.swing.table.DefaultTableModel;
 
 public class PharmaCareGUI extends javax.swing.JFrame {
 
-    /**
-     * Creates new form PharmaCareGUI
-     */
+    // define table model
+    DefaultTableModel dtm = new DefaultTableModel();
+    
+    // Creates new form PharmaCareGUI
     public PharmaCareGUI() {
-
-        // define table model
-        DefaultTableModel dtm = new DefaultTableModel();
-        
-        
+       
         // initialize components
         initComponents();
 
@@ -367,14 +364,26 @@ public class PharmaCareGUI extends javax.swing.JFrame {
         String frequency = cmbFrequency.getSelectedItem().toString();
         String startDate = txtStartDate.getText();
         String endDate = txtEndDate.getText();
-        boolean isActive = chkActive.isSelected();
+        boolean status = chkActive.isSelected();
+        String isActive;
         
         // if drug name and dose is not null
-        /*try {
+        try {
             if(drugName.compareTo("") != 0 && dose.compareTo("") != 0) {
-                
+                // check if it is active
+                if(status == true) {
+                    isActive = "Active";
+                } else {
+                    isActive = "Not active";
+                }
+                // add collected details to the invoice  details table
+                dtm.addRow(new Object[] {drugName, dose, frequency, startDate, endDate, isActive});
+            } else {
+                System.out.println("Enter valid drug name and dose");
             }
-        }*/
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }//GEN-LAST:event_btnAddActionPerformed
 
     /**
