@@ -60,11 +60,14 @@
                       <Component id="btnDelete" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
+                      <Component id="btnExit" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnSubmit" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lblDoctorID" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="440" max="-2" attributes="0"/>
-                          </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="lblPrescriptionID" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -93,10 +96,10 @@
                                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                           <Component id="txtDate" alignment="0" max="32767" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
+                                              <Component id="chkActive" min="-2" max="-2" attributes="0"/>
                                               <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                                   <Component id="cmbFrequency" alignment="0" pref="0" max="32767" attributes="0"/>
-                                                  <Component id="jComboBox1" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="cmbDrugName" alignment="0" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
@@ -110,6 +113,13 @@
                                   </Group>
                               </Group>
                           </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblDoctorID" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblDate" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="txtPatientName" alignment="0" pref="223" max="32767" attributes="0"/>
@@ -118,19 +128,8 @@
                           <Component id="txtStartDate" alignment="1" max="32767" attributes="0"/>
                           <Component id="txtEndDate" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtDose" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnValidate" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="lblDate" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="btnValidate" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="btnExit" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnSubmit" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
@@ -162,29 +161,26 @@
                       <Component id="txtDoctorID" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtDoctorName" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-<<<<<<< Updated upstream
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="btnValidate" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="13" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="9" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="txtDate" min="-2" max="-2" attributes="0"/>
                           <Component id="lblDate" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                   </Group>
-=======
->>>>>>> Stashed changes
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btnValidate" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
               </Group>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cmbDrugName" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblDrugName" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblDose" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtDose" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -200,7 +196,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblEndDate" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtEndDate" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jCheckBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="chkActive" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblStatus" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
@@ -243,11 +239,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtPatientID">
     </Component>
-    <Component class="javax.swing.JButton" name="btnValidate">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Validate"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="lblDoctorID">
       <Properties>
         <Property name="text" type="java.lang.String" value="Doctor ID"/>
@@ -285,7 +276,7 @@
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox1">
+    <Component class="javax.swing.JComboBox" name="cmbDrugName">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
@@ -347,7 +338,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtEndDate">
     </Component>
-    <Component class="javax.swing.JCheckBox" name="jCheckBox1">
+    <Component class="javax.swing.JCheckBox" name="chkActive">
       <Properties>
         <Property name="text" type="java.lang.String" value=" Active"/>
       </Properties>
@@ -427,6 +418,14 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtDate">
+    </Component>
+    <Component class="javax.swing.JButton" name="btnValidate">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Validate"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnValidateActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
