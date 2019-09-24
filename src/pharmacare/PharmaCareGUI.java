@@ -379,7 +379,8 @@ public class PharmaCareGUI extends javax.swing.JFrame {
                 // add collected details to the invoice  details table
                 dtm.addRow(new Object[] {drugName, dose, frequency, startDate, endDate, isActive});
             } else {
-                System.out.println("Enter valid drug name and dose");
+                // show error message 
+                JOptionPane.showMessageDialog(this, "fill the fields correctly");
             }
         } catch (Exception e) {
             System.out.println(e);
