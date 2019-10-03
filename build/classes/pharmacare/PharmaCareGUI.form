@@ -93,13 +93,6 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="chkActive" min="-2" max="-2" attributes="0"/>
-                                              <Component id="cmbFrequency" alignment="0" min="-2" pref="87" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" attributes="0">
                                                   <Group type="103" groupAlignment="1" attributes="0">
                                                       <Component id="txtPatientID" alignment="0" max="32767" attributes="0"/>
@@ -129,6 +122,13 @@
                                           </Group>
                                           <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
                                       </Group>
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="chkActive" min="-2" max="-2" attributes="0"/>
+                                              <Component id="cmbFrequency" min="-2" pref="178" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                           </Group>
@@ -139,11 +139,11 @@
                       </Group>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="txtPatientName" alignment="0" pref="223" max="32767" attributes="0"/>
-                          <Component id="txtPatientType" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtDoctorName" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtStartDate" alignment="1" max="32767" attributes="0"/>
                           <Component id="txtDose" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtEndDate" alignment="0" max="32767" attributes="0"/>
+                          <Component id="cmbPatientType" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
@@ -191,7 +191,7 @@
                   <Component id="lblPatientID" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtPatientID" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblPatientType" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtPatientType" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cmbPatientType" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -313,11 +313,6 @@
         <Property name="text" type="java.lang.String" value="Patient&apos;s Type"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtPatientType">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="lblDoctorName">
       <Properties>
         <Property name="text" type="java.lang.String" value="Doctor&apos;s Name"/>
@@ -348,12 +343,14 @@
     <Component class="javax.swing.JComboBox" name="cmbFrequency">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="5">
+          <StringArray count="7">
             <StringItem index="0" value="Once a day"/>
             <StringItem index="1" value="Twice a day"/>
             <StringItem index="2" value="Three times a day"/>
             <StringItem index="3" value="Once a week"/>
             <StringItem index="4" value="Twice a week"/>
+            <StringItem index="5" value="Three times a week"/>
+            <StringItem index="6" value="Other"/>
           </StringArray>
         </Property>
       </Properties>
@@ -459,5 +456,18 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JComboBox" name="cmbPatientType">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="2">
+            <StringItem index="0" value="Indoor"/>
+            <StringItem index="1" value="Outdoor"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
   </SubComponents>
 </Form>

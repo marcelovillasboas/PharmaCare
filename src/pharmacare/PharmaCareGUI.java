@@ -61,7 +61,6 @@ public class PharmaCareGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txtPatientName = new javax.swing.JTextField();
         lblPatientType = new javax.swing.JLabel();
-        txtPatientType = new javax.swing.JTextField();
         lblDoctorName = new javax.swing.JLabel();
         txtDoctorName = new javax.swing.JTextField();
         lblDrugName = new javax.swing.JLabel();
@@ -87,6 +86,7 @@ public class PharmaCareGUI extends javax.swing.JFrame {
         txtDrugName = new javax.swing.JTextField();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblPrescriptionDetails = new javax.swing.JTable();
+        cmbPatientType = new javax.swing.JComboBox<>();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -132,8 +132,6 @@ public class PharmaCareGUI extends javax.swing.JFrame {
 
         lblPatientType.setText("Patient's Type");
 
-        txtPatientType.setEditable(false);
-
         lblDoctorName.setText("Doctor's Name");
 
         txtDoctorName.setEditable(false);
@@ -144,7 +142,7 @@ public class PharmaCareGUI extends javax.swing.JFrame {
 
         lblFrequency.setText("Frequency");
 
-        cmbFrequency.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Once a day", "Twice a day", "Three times a day", "Once a week", "Twice a week" }));
+        cmbFrequency.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Once a day", "Twice a day", "Three times a day", "Once a week", "Twice a week", "Three times a week", "Other" }));
 
         lblStartDate.setText("Start Date");
 
@@ -194,6 +192,8 @@ public class PharmaCareGUI extends javax.swing.JFrame {
         ));
         jScrollPane4.setViewportView(tblPrescriptionDetails);
 
+        cmbPatientType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Indoor", "Outdoor" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -221,11 +221,6 @@ public class PharmaCareGUI extends javax.swing.JFrame {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(chkActive)
-                                                .addComponent(cmbFrequency, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addGroup(layout.createSequentialGroup()
                                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                         .addComponent(txtPatientID, javax.swing.GroupLayout.Alignment.LEADING)
@@ -246,17 +241,22 @@ public class PharmaCareGUI extends javax.swing.JFrame {
                                                     .addComponent(lblDoctorName)
                                                     .addComponent(lblStartDate)
                                                     .addComponent(lblDose)))
-                                            .addGap(18, 18, 18)))))
+                                            .addGap(18, 18, 18))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(chkActive)
+                                                .addComponent(cmbFrequency, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblStatus)
                                 .addGap(587, 587, 587)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtPatientName, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
-                            .addComponent(txtPatientType)
                             .addComponent(txtDoctorName)
                             .addComponent(txtStartDate, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtDose)
-                            .addComponent(txtEndDate)))
+                            .addComponent(txtEndDate)
+                            .addComponent(cmbPatientType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblPrescriptionDetails)
@@ -292,7 +292,7 @@ public class PharmaCareGUI extends javax.swing.JFrame {
                     .addComponent(lblPatientID)
                     .addComponent(txtPatientID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPatientType)
-                    .addComponent(txtPatientType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbPatientType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblDoctorName)
@@ -431,6 +431,7 @@ public class PharmaCareGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnValidate;
     private javax.swing.JCheckBox chkActive;
     private javax.swing.JComboBox<String> cmbFrequency;
+    private javax.swing.JComboBox<String> cmbPatientType;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -460,7 +461,6 @@ public class PharmaCareGUI extends javax.swing.JFrame {
     private javax.swing.JTextField txtEndDate;
     private javax.swing.JTextField txtPatientID;
     private javax.swing.JTextField txtPatientName;
-    private javax.swing.JTextField txtPatientType;
     private javax.swing.JTextField txtPrescriptionID;
     private javax.swing.JTextField txtStartDate;
     // End of variables declaration//GEN-END:variables
