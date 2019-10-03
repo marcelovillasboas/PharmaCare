@@ -5,6 +5,7 @@
  */
 package pharmacare;
 
+import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -358,6 +359,7 @@ public class PharmaCareGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        
         // get assigned values for prescription details
         String drugName = txtDrugName.getText();
         String dose = txtDose.getText();
@@ -367,23 +369,31 @@ public class PharmaCareGUI extends javax.swing.JFrame {
         boolean status = chkActive.isSelected();
         String isActive;
         
-        // if drug name and dose are not null
+        // assign the query into sql variable
+        String sql = "INSERT INTO Prescription VALUES (?, ?, ?, ?, ?, ?)";
+        
+        // connect the database 
         try {
-            if(drugName.compareTo("") != 0 && dose.compareTo("") != 0) {
-                // check if it is active
-                if(status == true) {
-                    isActive = "Active";
-                } else {
-                    isActive = "Not active";
-                }
-                // add collected details to the invoice details table
-                dtm.addRow(new Object[] {drugName, dose, frequency, startDate, endDate, isActive});
-            } else {
-                // show error message 
-                JOptionPane.showMessageDialog(this, "fill the fields correctly");
-            }
+            
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "P@ssw0rd011");
+        
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, 2);
+            ps.setString(4, "James");
+            ps.setInt(5, 2);
+            ps.setString(6, "Melisa");
+            ps.setInt(7, 0);
+            
+            int up = ps.executeUpdate();
+            System.out.println("Updated"); 
+            
+            connection.close();
+            
         } catch (Exception e) {
+        
             System.out.println(e);
+            
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
