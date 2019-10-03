@@ -367,7 +367,7 @@ public class PharmaCareGUI extends javax.swing.JFrame {
         boolean status = chkActive.isSelected();
         String isActive;
         
-        // if drug name and dose is not null
+        // if drug name and dose are not null
         try {
             if(drugName.compareTo("") != 0 && dose.compareTo("") != 0) {
                 // check if it is active
@@ -376,7 +376,7 @@ public class PharmaCareGUI extends javax.swing.JFrame {
                 } else {
                     isActive = "Not active";
                 }
-                // add collected details to the invoice  details table
+                // add collected details to the invoice details table
                 dtm.addRow(new Object[] {drugName, dose, frequency, startDate, endDate, isActive});
             } else {
                 // show error message 
