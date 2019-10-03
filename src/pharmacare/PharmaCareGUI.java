@@ -51,7 +51,7 @@ public class PharmaCareGUI extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        lblPrescriptionID = new javax.swing.JLabel();
+        lblPrescriptionNo = new javax.swing.JLabel();
         lblPatientID = new javax.swing.JLabel();
         txtPrescriptionID = new javax.swing.JTextField();
         txtPatientID = new javax.swing.JTextField();
@@ -116,7 +116,7 @@ public class PharmaCareGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblPrescriptionID.setText("Prescription ID");
+        lblPrescriptionNo.setText("Prescription Number");
 
         lblPatientID.setText("Patient ID");
 
@@ -213,7 +213,7 @@ public class PharmaCareGUI extends javax.swing.JFrame {
                                     .addGap(440, 440, 440))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lblPrescriptionID)
+                                        .addComponent(lblPrescriptionNo)
                                         .addComponent(lblPatientID)
                                         .addComponent(lblDrugName)
                                         .addComponent(lblFrequency))
@@ -283,7 +283,7 @@ public class PharmaCareGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPrescriptionID)
+                    .addComponent(lblPrescriptionNo)
                     .addComponent(txtPrescriptionID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(txtPatientName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -449,7 +449,7 @@ public class PharmaCareGUI extends javax.swing.JFrame {
     private javax.swing.JLabel lblPatientID;
     private javax.swing.JLabel lblPatientType;
     private javax.swing.JLabel lblPrescriptionDetails;
-    private javax.swing.JLabel lblPrescriptionID;
+    private javax.swing.JLabel lblPrescriptionNo;
     private javax.swing.JLabel lblStartDate;
     private javax.swing.JLabel lblStatus;
     private javax.swing.JTable tblPrescriptionDetails;
