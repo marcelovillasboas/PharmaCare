@@ -370,7 +370,7 @@ public class PharmaCareGUI extends javax.swing.JFrame {
         String isActive;
         
         // assign the query into sql variable
-        String sql = "INSERT INTO Prescription VALUES (?, ?, ?, ?, ?, ?)";
+        String sqlPrescription = "INSERT INTO Prescription VALUES (?, ?, ?, ?, ?, ?)";
         
         // connect the database 
         try {
@@ -378,8 +378,10 @@ public class PharmaCareGUI extends javax.swing.JFrame {
             Class.forName("oracle.jdbc.driver.OracleDriver");
             Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "P@ssw0rd011");
         
-            PreparedStatement ps = connection.prepareStatement(sql);
+            PreparedStatement ps = connection.prepareStatement(sqlPrescription);
             ps.setInt(1, 2);
+            ps.setInt(2, 2019-10-04);
+            ps.setString(3, "Details");
             ps.setString(4, "James");
             ps.setInt(5, 2);
             ps.setString(6, "Melisa");
