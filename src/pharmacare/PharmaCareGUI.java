@@ -233,7 +233,7 @@ public class PharmaCareGUI extends javax.swing.JFrame {
                                                     .addGap(59, 59, 59))
                                                 .addGroup(layout.createSequentialGroup()
                                                     .addComponent(txtDrugName)
-                                                    .addGap(350, 350, 350)))
+                                                    .addGap(232, 232, 232)))
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                 .addComponent(jLabel1)
                                                 .addComponent(lblPatientType)

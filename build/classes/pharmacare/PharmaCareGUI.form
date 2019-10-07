@@ -107,7 +107,7 @@
                                               </Group>
                                               <Group type="102" attributes="0">
                                                   <Component id="txtDrugName" max="32767" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="350" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="232" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <Group type="103" groupAlignment="1" attributes="0">
