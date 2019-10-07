@@ -6,6 +6,7 @@
 package pharmacare;
 
 import java.sql.*;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -368,6 +369,15 @@ public class PharmaCareGUI extends javax.swing.JFrame {
         String endDate = txtEndDate.getText();
         boolean status = chkActive.isSelected();
         String isActive;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        
+        try {
+        Date sDate = sdf.parse(startDate);
+        Date eDate = sdf.parse(endDate);
+;        } catch (ParseException e) {
+            e.printStackTrace();
+            return;
+        }
         
         // assign the query into sql variable
         String sqlPrescription = "INSERT INTO PrescriptionDetails (drugName, drugDose, frequency, startDate, endDate, status) VALUES (?, ?, ?, ?, ?, ?)";
