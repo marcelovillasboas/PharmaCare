@@ -370,7 +370,7 @@ public class PharmaCareGUI extends javax.swing.JFrame {
         String isActive;
         
         // assign the query into sql variable
-        String sqlPrescription = "INSERT INTO PrescriptionDetails VALUES (?, ?, ?, ?, ?, ?)";
+        String sqlPrescription = "INSERT INTO PrescriptionDetails (drugName, drugDose, frequency, startDate, endDate, status) VALUES (?, ?, ?, ?, ?, ?)";
         
         // connect the database 
         try {
