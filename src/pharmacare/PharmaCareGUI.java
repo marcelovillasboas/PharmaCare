@@ -5,6 +5,7 @@
  */
 package pharmacare;
 
+import java.io.IOException;
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -369,32 +370,33 @@ public class PharmaCareGUI extends javax.swing.JFrame {
         String endDate = txtEndDate.getText();
         boolean status = chkActive.isSelected();
         String isActive;
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        
-        try {
-        Date sDate = sdf.parse(startDate);
-        Date eDate = sdf.parse(endDate);
-;        } catch (ParseException e) {
-            e.printStackTrace();
-            return;
-        }
+        // SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         
         // assign the query into sql variable
-        String sqlPrescription = "INSERT INTO PrescriptionDetails (drugName, drugDose, frequency, startDate, endDate, status) VALUES (?, ?, ?, ?, ?, ?)";
+        String sqlPrescription = "INSERT INTO PrescriptionDetails (prescriptionno, drugName, drugDose, frequency, startDate, endDate, status) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        System.out.println ("1");
         
         // connect the database 
         try {
             
-            Class.forName("oracle.jdbc.driver.OracleDriver");
+           // Class.forName("oracle.jdbc.driver.OracleDriver");
             Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "P@ssw0rd011");
-        
+            int presno = 2;
             PreparedStatement ps = connection.prepareStatement(sqlPrescription);
-            ps.setString(1, drugName);
-            ps.setString(2, dose);
-            ps.setString(3, frequency);
-            ps.setString(4, startDate);
-            ps.setString(5, endDate);
-            ps.setBoolean(6, true);
+            ps.setInt(1, presno);
+            ps.setString(2, drugName);
+            ps.setString(3, dose);
+            ps.setString(4, frequency);
+            
+            Date sd = new SimpleDateFormat("dd/MM/yyyy").parse(startDate);
+            java.sql.Date sqlStartDate = new java.sql.Date(sd.getTime());
+            
+            Date ed = new SimpleDateFormat("dd/MM/yyyy").parse(endDate);
+            java.sql.Date sqlEndDate = new java.sql.Date(ed.getTime());
+            
+            ps.setDate(5, sqlStartDate);
+            ps.setDate(6, sqlEndDate);
+            ps.setBoolean(7, true);
             
             int up = ps.executeUpdate();
             System.out.println("Updated"); 
@@ -402,10 +404,10 @@ public class PharmaCareGUI extends javax.swing.JFrame {
             connection.close();
             
         } catch (Exception e) {
-        
-            System.out.println(e);
-            
+            System.out.println(e); 
         }
+        
+        System.out.println ("2");
     }//GEN-LAST:event_btnAddActionPerformed
 
     /**
