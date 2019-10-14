@@ -95,9 +95,9 @@
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" attributes="0">
                                                   <Group type="103" groupAlignment="1" attributes="0">
-                                                      <Component id="txtPatientID" alignment="0" max="32767" attributes="0"/>
+                                                      <Component id="txtPatientId" alignment="0" max="32767" attributes="0"/>
                                                       <Component id="txtDoctorID" alignment="0" max="32767" attributes="0"/>
-                                                      <Component id="txtPrescriptionID" alignment="0" max="32767" attributes="0"/>
+                                                      <Component id="txtPrescriptionId" alignment="0" max="32767" attributes="0"/>
                                                       <Group type="102" alignment="0" attributes="0">
                                                           <Component id="txtDate" min="-2" pref="87" max="-2" attributes="0"/>
                                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -182,14 +182,14 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblPrescriptionNo" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtPrescriptionID" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPrescriptionId" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtPatientName" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblPatientID" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtPatientID" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPatientId" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblPatientType" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cmbPatientType" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -279,17 +279,20 @@
         <Property name="text" type="java.lang.String" value="Patient ID"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtPrescriptionID">
+    <Component class="javax.swing.JTextField" name="txtPrescriptionId">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtPatientID">
+    <Component class="javax.swing.JTextField" name="txtPatientId">
     </Component>
     <Component class="javax.swing.JButton" name="btnValidate">
       <Properties>
         <Property name="text" type="java.lang.String" value="Validate"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnValidateActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblDoctorID">
       <Properties>

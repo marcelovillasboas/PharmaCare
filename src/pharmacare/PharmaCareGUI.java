@@ -56,8 +56,8 @@ public class PharmaCareGUI extends javax.swing.JFrame {
         jTable2 = new javax.swing.JTable();
         lblPrescriptionNo = new javax.swing.JLabel();
         lblPatientID = new javax.swing.JLabel();
-        txtPrescriptionID = new javax.swing.JTextField();
-        txtPatientID = new javax.swing.JTextField();
+        txtPrescriptionId = new javax.swing.JTextField();
+        txtPatientId = new javax.swing.JTextField();
         btnValidate = new javax.swing.JButton();
         lblDoctorID = new javax.swing.JLabel();
         txtDoctorID = new javax.swing.JTextField();
@@ -123,9 +123,14 @@ public class PharmaCareGUI extends javax.swing.JFrame {
 
         lblPatientID.setText("Patient ID");
 
-        txtPrescriptionID.setEditable(false);
+        txtPrescriptionId.setEditable(false);
 
         btnValidate.setText("Validate");
+        btnValidate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnValidateActionPerformed(evt);
+            }
+        });
 
         lblDoctorID.setText("Doctor ID");
 
@@ -226,9 +231,9 @@ public class PharmaCareGUI extends javax.swing.JFrame {
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addGroup(layout.createSequentialGroup()
                                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                        .addComponent(txtPatientID, javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(txtPatientId, javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(txtDoctorID, javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(txtPrescriptionID, javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(txtPrescriptionId, javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                                             .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                             .addGap(0, 0, Short.MAX_VALUE)))
@@ -287,13 +292,13 @@ public class PharmaCareGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPrescriptionNo)
-                    .addComponent(txtPrescriptionID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPrescriptionId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(txtPatientName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPatientID)
-                    .addComponent(txtPatientID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPatientId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPatientType)
                     .addComponent(cmbPatientType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -370,16 +375,14 @@ public class PharmaCareGUI extends javax.swing.JFrame {
         String endDate = txtEndDate.getText();
         boolean status = chkActive.isSelected();
         String isActive;
-        // SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         
         // assign the query into sql variable
         String sqlPrescription = "INSERT INTO PrescriptionDetails (prescriptionno, drugName, drugDose, frequency, startDate, endDate, status) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        System.out.println ("1");
         
         // connect the database 
         try {
             
-           // Class.forName("oracle.jdbc.driver.OracleDriver");
+            // Class.forName("oracle.jdbc.driver.OracleDriver");
             Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "P@ssw0rd011");
             int presno = 2;
             PreparedStatement ps = connection.prepareStatement(sqlPrescription);
@@ -406,13 +409,43 @@ public class PharmaCareGUI extends javax.swing.JFrame {
         } catch (Exception e) {
             System.out.println(e); 
         }
-        
-        System.out.println ("2");
+       
     }//GEN-LAST:event_btnAddActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void btnValidateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidateActionPerformed
+        
+        // get assigned values for patient info
+        int patientId = Integer.parseInt(txtPatientId.getText());
+        String patientName;
+        String prescriptionNo;
+        int patientType;
+        
+        // assign query into sql variable
+        String sqlPatient = "SELECT * FROM patient WHERE patientID = ?";
+        
+        // connect to the database
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "P@ssw0rd011");
+            PreparedStatement ps = connection.prepareStatement(sqlPatient);
+            ps.setInt(1, patientId);
+            ResultSet rs =  ps.executeQuery();
+            
+            while(rs.next()) {
+                patientName = rs.getString(2);
+                prescriptionNo = rs.getString(3);
+                patientType = rs.getInt(4);
+                txtPatientName.setText(patientName);
+                txtPrescriptionId.setText(prescriptionNo);
+            }
+            
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        
+        
+    }//GEN-LAST:event_btnValidateActionPerformed
+
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -482,9 +515,9 @@ public class PharmaCareGUI extends javax.swing.JFrame {
     private javax.swing.JTextField txtDose;
     private javax.swing.JTextField txtDrugName;
     private javax.swing.JTextField txtEndDate;
-    private javax.swing.JTextField txtPatientID;
+    private javax.swing.JTextField txtPatientId;
     private javax.swing.JTextField txtPatientName;
-    private javax.swing.JTextField txtPrescriptionID;
+    private javax.swing.JTextField txtPrescriptionId;
     private javax.swing.JTextField txtStartDate;
     // End of variables declaration//GEN-END:variables
 }
