@@ -376,6 +376,11 @@ public class PharmaCareGUI extends javax.swing.JFrame {
         boolean status = chkActive.isSelected();
         String isActive;
         
+        if (status == true) {
+            isActive = "Active";
+        } else {
+            isActive = "Not active";
+        }
         // assign the query into sql variable
         String sqlPrescription = "INSERT INTO PrescriptionDetails (prescriptionno, drugName, drugDose, frequency, startDate, endDate, status) VALUES (?, ?, ?, ?, ?, ?, ?)";
         
@@ -411,7 +416,7 @@ public class PharmaCareGUI extends javax.swing.JFrame {
         }
         
         dtm.addRow(new Object[] {
-                    drugName, dose, frequency, startDate, endDate, status});
+                    drugName, dose, frequency, startDate, endDate, isActive});
        
     }//GEN-LAST:event_btnAddActionPerformed
 
