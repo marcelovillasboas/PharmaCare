@@ -409,6 +409,9 @@ public class PharmaCareGUI extends javax.swing.JFrame {
         } catch (Exception e) {
             System.out.println(e); 
         }
+        
+        dtm.addRow(new Object[] {
+                    drugName, dose, frequency, startDate, endDate, status});
        
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -459,6 +462,8 @@ public class PharmaCareGUI extends javax.swing.JFrame {
         } catch (Exception f) {
             System.out.println(f);
         }
+        
+        System.out.println("Updated");
         
         
     }//GEN-LAST:event_btnValidateActionPerformed
