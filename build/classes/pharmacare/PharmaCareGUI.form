@@ -96,7 +96,7 @@
                                               <Group type="102" attributes="0">
                                                   <Group type="103" groupAlignment="1" attributes="0">
                                                       <Component id="txtPatientId" alignment="0" max="32767" attributes="0"/>
-                                                      <Component id="txtDoctorID" alignment="0" max="32767" attributes="0"/>
+                                                      <Component id="txtDoctorId" alignment="0" max="32767" attributes="0"/>
                                                       <Component id="txtPrescriptionId" alignment="0" max="32767" attributes="0"/>
                                                       <Group type="102" alignment="0" attributes="0">
                                                           <Component id="txtDate" min="-2" pref="87" max="-2" attributes="0"/>
@@ -198,7 +198,7 @@
                   <Component id="lblDoctorName" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblDoctorID" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtDoctorID" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtDoctorId" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtDoctorName" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -299,7 +299,7 @@
         <Property name="text" type="java.lang.String" value="Doctor ID"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtDoctorID">
+    <Component class="javax.swing.JTextField" name="txtDoctorId">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
