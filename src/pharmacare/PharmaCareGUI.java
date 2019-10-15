@@ -29,7 +29,7 @@ public class PharmaCareGUI extends javax.swing.JFrame {
             try {
             // set system date
             Date date = new Date();
-            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
             txtDate.setText(formatter.format(date));
         
             // set column identifiers for table
@@ -462,7 +462,7 @@ public class PharmaCareGUI extends javax.swing.JFrame {
             
             Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "P@ssw0rd011");
             PreparedStatement psDoctor = connection.prepareStatement(sqlDoctor);
-            psDoctor.setInt(1, doctorId);
+            psDoctor.setInt(2, doctorId);
             ResultSet rsDoctor = psDoctor.executeQuery();
             
             while(rsDoctor.next()) {
