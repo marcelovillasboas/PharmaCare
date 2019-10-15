@@ -173,6 +173,11 @@ public class PharmaCareGUI extends javax.swing.JFrame {
         btnEdit.setText("Edit Line");
 
         btnDelete.setText("Delete Line");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         btnExit.setText("Exit");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
@@ -449,7 +454,7 @@ public class PharmaCareGUI extends javax.swing.JFrame {
                 txtPrescriptionId.setText(prescriptionNo);
             }
             
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e);
         }
         
@@ -472,6 +477,12 @@ public class PharmaCareGUI extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_btnValidateActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        int selectedRow = tblPrescriptionDetails.getSelectedRow();
+        
+        dtm.removeRow(selectedRow);
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
 
     public static void main(String args[]) {
