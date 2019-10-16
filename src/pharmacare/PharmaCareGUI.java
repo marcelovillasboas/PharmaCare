@@ -171,6 +171,11 @@ public class PharmaCareGUI extends javax.swing.JFrame {
         });
 
         btnEdit.setText("Edit Line");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
 
         btnDelete.setText("Delete Line");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -483,6 +488,63 @@ public class PharmaCareGUI extends javax.swing.JFrame {
         
         dtm.removeRow(selectedRow);
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        
+        boolean isSelected = tblPrescriptionDetails.getSelectionModel().isSelectionEmpty();
+        System.out.println(isSelected);
+        
+        int row = tblPrescriptionDetails.getSelectedRow();
+        int column = tblPrescriptionDetails.getSelectedColumn();
+        // System.out.println(column + "  " + row);
+        
+        if (isSelected = true) {
+            
+            JOptionPane.showMessageDialog(null, "You have to select a cell to edit first.");
+            
+        } else {
+        
+            if (column == 0) {
+
+                 String drugName = JOptionPane.showInputDialog("Enter the drug name");
+                 tblPrescriptionDetails.getModel().setValueAt(drugName, row, column);
+
+            } else if (column == 1) {
+
+                String dose = JOptionPane.showInputDialog("Enter the correct dose");
+                tblPrescriptionDetails.getModel().setValueAt(dose, row, column);
+
+            } else if (column == 2) {
+
+                String[] options = {"Once a day", "Twice a day", "Three times a day", "Once a week", "Twice a week", "Three times a week", "Other"}; 
+                String frequency = (String)JOptionPane.showInputDialog(null, "Enter the correct date", null, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+                tblPrescriptionDetails.getModel().setValueAt(frequency, row, column);
+
+            } else if (column == 3) {
+
+                String startDate = JOptionPane.showInputDialog("Enter the correct start date");
+                tblPrescriptionDetails.getModel().setValueAt(startDate, row, column);
+
+            } else if (column == 4) {
+
+                String endDate = JOptionPane.showInputDialog("Enter the correct end date");
+                tblPrescriptionDetails.getModel().setValueAt(endDate, row, column);
+
+            } else if (column == 5) {
+
+                String status = (String) tblPrescriptionDetails.getValueAt(row, column);
+
+                if (status == "Active") {
+                    tblPrescriptionDetails.setValueAt("Not active", row, column);
+                } else {
+                    tblPrescriptionDetails.setValueAt("Active", row, column);
+                }
+            }
+        
+        }
+        
+        
+    }//GEN-LAST:event_btnEditActionPerformed
 
 
     public static void main(String args[]) {
