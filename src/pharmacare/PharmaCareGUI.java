@@ -498,13 +498,14 @@ public class PharmaCareGUI extends javax.swing.JFrame {
         int column = tblPrescriptionDetails.getSelectedColumn();
         // System.out.println(column + "  " + row);
         
-        if (isSelected = true) {
+        if (isSelected == true) {
             
-            JOptionPane.showMessageDialog(null, "You have to select a cell to edit first.");
+            row = Integer.parseInt(JOptionPane.showInputDialog("Choose a row to edit"));
+            column = Integer.parseInt(JOptionPane.showInputDialog("Choose a column to edit"));
             
-        } else {
+        } 
         
-            if (column == 0) {
+        if (column == 0) {
 
                  String drugName = JOptionPane.showInputDialog("Enter the drug name");
                  tblPrescriptionDetails.getModel().setValueAt(drugName, row, column);
@@ -540,9 +541,9 @@ public class PharmaCareGUI extends javax.swing.JFrame {
                     tblPrescriptionDetails.setValueAt("Active", row, column);
                 }
             }
-        
-        }
-        
+
+            tblPrescriptionDetails.clearSelection();
+            System.out.println(isSelected);
         
     }//GEN-LAST:event_btnEditActionPerformed
 
