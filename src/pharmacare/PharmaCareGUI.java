@@ -170,7 +170,7 @@ public class PharmaCareGUI extends javax.swing.JFrame {
             }
         });
 
-        btnEdit.setText("Edit cell");
+        btnEdit.setText("Edit field");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditActionPerformed(evt);
@@ -473,11 +473,11 @@ public class PharmaCareGUI extends javax.swing.JFrame {
             
             Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "P@ssw0rd011");
             PreparedStatement psDoctor = connection.prepareStatement(sqlDoctor);
-            psDoctor.setInt(2, doctorId);
+            psDoctor.setInt(1, doctorId);
             ResultSet rsDoctor = psDoctor.executeQuery();
             
             while(rsDoctor.next()) {
-                doctorName = rsDoctor.getString(2);
+                doctorName = rsDoctor.getString(1);
                 txtDoctorName.setText(doctorName);
             }
         } catch (Exception f) {
@@ -524,7 +524,7 @@ public class PharmaCareGUI extends javax.swing.JFrame {
             } else if (column == 2) {
 
                 String[] options = {"Once a day", "Twice a day", "Three times a day", "Once a week", "Twice a week", "Three times a week", "Other"}; 
-                String frequency = (String)JOptionPane.showInputDialog(null, "Enter the correct date", null, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+                String frequency = (String)JOptionPane.showInputDialog(null, "Enter the correct frequency", null, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
                 tblPrescriptionDetails.getModel().setValueAt(frequency, row, column);
 
             } else if (column == 3) {
