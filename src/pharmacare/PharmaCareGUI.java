@@ -170,7 +170,7 @@ public class PharmaCareGUI extends javax.swing.JFrame {
             }
         });
 
-        btnEdit.setText("Edit Line");
+        btnEdit.setText("Edit cell");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditActionPerformed(evt);
@@ -427,7 +427,13 @@ public class PharmaCareGUI extends javax.swing.JFrame {
         
         dtm.addRow(new Object[] {
                     drugName, dose, frequency, startDate, endDate, isActive});
-       
+        
+        txtDrugName.setText(null);
+        txtDose.setText(null);
+        txtStartDate.setText(null);
+        txtEndDate.setText(null);
+        chkActive.setSelected(false);
+        
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnValidateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidateActionPerformed
@@ -500,8 +506,8 @@ public class PharmaCareGUI extends javax.swing.JFrame {
         
         if (isSelected == true) {
             
-            row = Integer.parseInt(JOptionPane.showInputDialog("Choose a row to edit"));
-            column = Integer.parseInt(JOptionPane.showInputDialog("Choose a column to edit"));
+            row = Integer.parseInt(JOptionPane.showInputDialog("Choose a row to edit (the count starts at 0)"));
+            column = Integer.parseInt(JOptionPane.showInputDialog("Choose a column to edit (don't forget it starts at 0)"));
             
         } 
         
