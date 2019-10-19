@@ -5,59 +5,72 @@
  */
 package pharmacare;
 
+import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import javax.swing.JOptionPane;
+
 
 public class PrescriptionDetails {
     
     // declare class variables
+    //int prescriptionNo;
     String drugName;
-    String drugForm;
+    // String drugForm;
     String drugDose;
-    Date firstTime;
-    Date lastTime;
-    int timesPerDay;
-    boolean statusOfDose;
+    Date startDate;
+    Date endDate;
+    String frequency;
+    int statusOfDose;
     
     // constructor
-    private void prescriptionDetails(String drugName, String drugForm, String drugDose, Date firstTime, Date lastTime, int timesPerDay, boolean statusOfDose) {
+    public PrescriptionDetails(/*int prescriptionNo,*/ String drugName, String drugDose, Date startDate, Date endDate, String frequency, int status) {
         
+        // this.prescriptionNo = prescriptionNo;
         this.drugName = drugName;
-        this.drugForm = drugForm;
+        // this.drugForm = drugForm;
         this.drugDose = drugDose;
-        this.firstTime = firstTime;
-        this.lastTime = lastTime;
-        this.timesPerDay = timesPerDay;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.frequency = frequency;
         this.statusOfDose = statusOfDose;
         
     }
     
     // methods
     
+    /*
+    public int getPrescriptionNo() {
+        return this.prescriptionNo;
+    }*/
+    
     public String getDrugName() {
         return this.drugName;
     }
     
-    public String getDrugForm() {
+    /*public String getDrugForm() {
         return this.drugForm;
-    }
+    }*/
     
     public String getDrugDose() {
         return this.drugDose;
     }
     
-    public Date getFirstTime() {
-        return this.firstTime;
+    public Date getStartDate() {
+        return this.startDate;
     }
     
-    public Date getLastTime() {
-        return this.lastTime;
+    public Date getEndDate() {
+        return this.endDate;
     }
     
-    public int getTimesPerDay() {
-        return this.timesPerDay;
+    public String getFrequency() {
+        return this.frequency;
     }
     
-    public boolean getStatusOfDose() {
+    public int getStatusOfDose() {
         return this.statusOfDose;
     }
     

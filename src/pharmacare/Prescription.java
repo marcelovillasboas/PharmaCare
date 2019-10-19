@@ -5,7 +5,12 @@
  */
 package pharmacare;
 
+import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 public class Prescription {
     
@@ -14,23 +19,24 @@ public class Prescription {
     Date prescriptionDate;
     String prescriptionDetails;
     String prescribedDoctor;
-    int prescribedPatientID;
+    int prescribedPatientId;
     String patientName;
     boolean statusOfPrescription;
     
     // constructor
-    private void prescription(int prescriptionNo, Date prescriptionDate, String prescriptionDetais, String prescribedDoctor, int prescribedPatientID, String patientName, boolean statusOfPrescription) {
-        
+    // private void prescription(int prescriptionNo, Date prescriptionDate, String prescriptionDetais, String prescribedDoctor, int prescribedPatientID, String patientName, boolean statusOfPrescription) {
+    private void prescription(int prescriptionNo, String prescribedDoctor, int prescribedPatientID, String patientName) {    
         this.prescriptionNo = prescriptionNo;
-        this.prescriptionDate = prescriptionDate;
-        this.prescriptionDetails = prescriptionDetails;
+        // this.prescriptionDate = prescriptionDate;
+        // this.prescriptionDetails = prescriptionDetails;
         this.prescribedDoctor = prescribedDoctor;
-        this.prescribedPatientID = prescribedPatientID;
+        this.prescribedPatientId = prescribedPatientId;
         this.patientName = patientName;
-        this.statusOfPrescription = statusOfPrescription;
+        // this.statusOfPrescription = statusOfPrescription;
     }
     
     // methods
+    
     public int getPrescriptionNo() {
         return this.prescriptionNo;
     }
@@ -48,7 +54,7 @@ public class Prescription {
     }
     
     public int getPrescribedPatientID() {
-        return this.prescribedPatientID;
+        return this.prescribedPatientId;
     }
     
     public String getPatientName() {

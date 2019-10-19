@@ -9,9 +9,12 @@ import java.io.IOException;
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,6 +22,8 @@ public class PharmaCareGUI extends javax.swing.JFrame {
 
     // define table model
     DefaultTableModel dtm = new DefaultTableModel();
+    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+    Date date = new Date();
     
     // Creates new form PharmaCareGUI
     public PharmaCareGUI() {
@@ -28,9 +33,10 @@ public class PharmaCareGUI extends javax.swing.JFrame {
 
             try {
             // set system date
-            Date date = new Date();
-            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+
             txtDate.setText(formatter.format(date));
+            txtStartDate.setText(formatter.format(date));
+            txtEndDate.setText(formatter.format(date));
         
             // set column identifiers for table
             dtm.setColumnIdentifiers(new Object[] {"Drug name", "Dose", "Frequency", "Start date", "End date", "Status"});
@@ -194,6 +200,11 @@ public class PharmaCareGUI extends javax.swing.JFrame {
         jButton1.setText("Check Cocktail");
 
         btnSubmit.setText("Submit");
+        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Date");
 
@@ -391,6 +402,8 @@ public class PharmaCareGUI extends javax.swing.JFrame {
         } else {
             isActive = "Not active";
         }
+        
+        /*
         // assign the query into sql variable
         String sqlPrescription = "INSERT INTO PrescriptionDetails (prescriptionno, drugName, drugDose, frequency, startDate, endDate, status) VALUES (?, ?, ?, ?, ?, ?, ?)";
         
@@ -423,15 +436,13 @@ public class PharmaCareGUI extends javax.swing.JFrame {
             
         } catch (Exception e) {
             System.out.println(e); 
-        }
+        }*/
         
         dtm.addRow(new Object[] {
                     drugName, dose, frequency, startDate, endDate, isActive});
         
         txtDrugName.setText(null);
         txtDose.setText(null);
-        txtStartDate.setText(null);
-        txtEndDate.setText(null);
         chkActive.setSelected(false);
         
     }//GEN-LAST:event_btnAddActionPerformed
@@ -531,6 +542,14 @@ public class PharmaCareGUI extends javax.swing.JFrame {
 
                 String startDate = JOptionPane.showInputDialog("Enter the correct start date");
                 tblPrescriptionDetails.getModel().setValueAt(startDate, row, column);
+                
+                // to operate the cancel button at "edit" JOptionPane, you need to have the values stored in a database so you can retriece them
+                
+                /*if ((startDate == null) && (startDate.length() == 0)) {
+                    
+                    startDate = txtStartDate.getText();
+                    
+                }*/
 
             } else if (column == 4) {
 
@@ -552,6 +571,114 @@ public class PharmaCareGUI extends javax.swing.JFrame {
             System.out.println(isSelected);
         
     }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
+        
+        // class variables
+        int row = 0;
+        int column = 0;
+        // int prescriptionNo;
+        String date = txtDate.getText();        
+        int patientId = Integer.parseInt(txtPatientId.getText());
+        String prescribedDoctor = txtDoctorName.getText();
+        String patientName = txtPatientName.getText();
+    
+        /*
+        int pid = 0;
+        
+        try {
+           pid = PharmaDB.addPrescription(prescribedDoctor, patientId, patientName);
+        }
+        catch (Exception e) {
+           System.out.println("1");
+           System.out.println(e);   
+        }
+        System.out.println("Prescription " + pid + " Submitted");
+        */
+        
+        String drugName = tblPrescriptionDetails.getValueAt(row, column).toString();
+        String drugDose = tblPrescriptionDetails.getValueAt(row, column + 1).toString();
+        String frequency = tblPrescriptionDetails.getValueAt(row, column + 2).toString();
+        
+        Date startDate = new Date();
+        Date endDate = new Date();
+        
+        try { 
+            String sdate = tblPrescriptionDetails.getValueAt(row, column + 3).toString();    
+            startDate = formatter.parse(sdate);
+    
+            String edate = tblPrescriptionDetails.getValueAt(row, column + 4).toString();
+            endDate = formatter.parse(edate);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        
+        String bStatus  = tblPrescriptionDetails.getValueAt(row, column + 5).toString();
+        int status;
+        if(bStatus == "Active") {
+            status = 1;
+        } else {
+            status = 0;
+        }
+            
+        PrescriptionDetails pd = new PrescriptionDetails(/*prescriptionNo*/drugName, drugDose, 
+            startDate, endDate, frequency, status);
+        
+       
+        try {
+            PharmaDB.addPrescriptionDetails(pd);
+            System.out.println("called addpresdetails function");
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }
+        
+        /*
+        
+        ArrayList<String> drugNames = new ArrayList<String>();
+        drugNames.add(tblPrescriptionDetails.getModel().getValueAt(row, column).toString());
+            for(int i = 0; i < 15; i++) {
+                if (tblPrescriptionDetails.getModel().getValueAt((row + 1), (column)) != null) {
+                    row++;
+                    drugNames.add(tblPrescriptionDetails.getModel().getValueAt(row, column).toString());
+                }
+            };
+        ArrayList<String> drugDoses = new ArrayList<String>();
+        drugDoses.add(tblPrescriptionDetails.getModel().getValueAt(row, (column + 1)).toString());
+            for(int i = 0; i < 15; i++) {
+                if (tblPrescriptionDetails.getModel().getValueAt((row + 1), (column + 1)) != null) {
+                    row++;
+                    drugNames.add(tblPrescriptionDetails.getModel().getValueAt(row, column + 1).toString());
+                }
+            };
+        ArrayList<Date> startDates = new ArrayList<Date>();
+        String date1 = tblPrescriptionDetails.getModel().getValueAt(row, column + 3).toString();
+        Date startDate = null;
+        try {
+            startDate = new SimpleDateFormat("dd/MON/yyyy").parse(date1);
+        } catch (ParseException ex) {
+            Logger.getLogger(PharmaCareGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ArrayList<Date> endDates = new ArrayList<Date>();
+        String date2 = tblPrescriptionDetails.getModel().getValueAt(row, column + 4).toString();
+        Date endDate = null;
+        try {
+            endDate = new SimpleDateFormat("dd/MON/yyyy").parse(date2);
+        } catch (ParseException ex) {
+            Logger.getLogger(PharmaCareGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String status = tblPrescriptionDetails.getModel().getValueAt(row, column + 5).toString();
+        int statusInt;
+        if(status.compareTo("Active") == 0) {
+            statusInt = 0;
+        } else {
+            statusInt = 1;
+        }
+                   
+        System.out.println(drugNames.get(0));
+        */    
+        
+    }//GEN-LAST:event_btnSubmitActionPerformed
 
 
     public static void main(String args[]) {
