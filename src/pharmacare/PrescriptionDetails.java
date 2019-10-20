@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pharmacare;
 
 import java.sql.*;
@@ -26,11 +21,9 @@ public class PrescriptionDetails {
     int statusOfDose;
     
     // constructor
-    public PrescriptionDetails(/*int prescriptionNo,*/ String drugName, String drugDose, long startDate, long endDate, String frequency, int status) {
+    public PrescriptionDetails(String drugName, String drugDose, long startDate, long endDate, String frequency, int status) {
         
-        // this.prescriptionNo = prescriptionNo;
         this.drugName = drugName;
-        // this.drugForm = drugForm;
         this.drugDose = drugDose;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -40,19 +33,9 @@ public class PrescriptionDetails {
     }
     
     // methods
-    
-    /*
-    public int getPrescriptionNo() {
-        return this.prescriptionNo;
-    }*/
-    
     public String getDrugName() {
         return this.drugName;
     }
-    
-    /*public String getDrugForm() {
-        return this.drugForm;
-    }*/
     
     public String getDrugDose() {
         return this.drugDose;

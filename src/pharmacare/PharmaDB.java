@@ -18,18 +18,15 @@ import java.util.Date;
  */
 public class PharmaDB {
     
-    public static int addPrescription(String prescribedDoctor, int prescribedPatientId,
-                                                        String patientName) throws Exception {
+    public static int addPrescription(Prescription p) throws Exception {
        String sqlPrescription = "INSERT INTO prescription (prescriptionNo, prescribedDoctor, prescribedPatientId, patientName) VALUES (prescriptionId.nextval, ?, ?, ?)";
        Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "P@ssw0rd011");
 
-       
-       // need to fix the generated key with an auto increment SQL solution (IDENTITY)
        try {
            PreparedStatement psPrescription = connection.prepareStatement(sqlPrescription, PreparedStatement.RETURN_GENERATED_KEYS);
-           psPrescription.setString(1, prescribedDoctor);
-           psPrescription.setInt(2, prescribedPatientId);
-           psPrescription.setString(3, patientName);
+           psPrescription.setString(1, p.getPrescribedDoctor());
+           psPrescription.setInt(2, p.getPrescribedPatientID());
+           psPrescription.setString(3, p.getPatientName());
            psPrescription.executeUpdate();
            ResultSet rs = psPrescription.getGeneratedKeys();
            
@@ -46,14 +43,12 @@ public class PharmaDB {
     
     public static void addPrescriptionDetails(PrescriptionDetails pd) throws Exception {
     
-        System.out.println("Enter presdetails");
         long startDate = pd.getStartDate();
         long endDate = pd.getEndDate();
         
         // need to fix the date conversion to DB
         String sqlPrescriptionDetails = "INSERT INTO prescriptionDetails (prescriptionNo, drugName, drugDose, frequency, status, sDate, eDate) VALUES (prescriptionId.nextval, ?, ?, ?, ?, ?, ?)";
         Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "P@ssw0rd011");
-        System.out.println("presdetails connected");
         
         try {
                         
@@ -72,4 +67,5 @@ public class PharmaDB {
         }
                 
     }
+
 }

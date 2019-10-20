@@ -208,6 +208,8 @@ public class PharmaCareGUI extends javax.swing.JFrame {
 
         jLabel2.setText("Date");
 
+        txtDate.setEditable(false);
+
         tblPrescriptionDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -575,114 +577,66 @@ public class PharmaCareGUI extends javax.swing.JFrame {
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         
         // class variables
-        int row = 0;
+        int row = tblPrescriptionDetails.getModel().getRowCount();
         int column = 0;
-        // int prescriptionNo;
         String date = txtDate.getText();        
-        int patientId = Integer.parseInt(txtPatientId.getText());
+        int prescribedPatientId = Integer.parseInt(txtPatientId.getText());
         String prescribedDoctor = txtDoctorName.getText();
         String patientName = txtPatientName.getText();
-    
-        /*
-        int pid = 0;
+        int prescriptionNo = 0;
+                
+        for(int r = 0; r < row; r++) {
+            String drugName = tblPrescriptionDetails.getValueAt(r, column).toString();
+            String drugDose = tblPrescriptionDetails.getValueAt(r, column + 1).toString();
+            String frequency = tblPrescriptionDetails.getValueAt(r, column + 2).toString();
+                
+            Date sDate = new Date();
+            Date eDate = new Date();
+
+            try { 
+                String sdate = tblPrescriptionDetails.getValueAt(r, column + 3).toString();    
+                sDate = formatter.parse(sdate);
+
+                String edate = tblPrescriptionDetails.getValueAt(r, column + 4).toString();
+                eDate = formatter.parse(edate);
+                
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+
+            long startDate = (long) (sDate.getTime());        
+            long endDate = (long) (eDate.getTime());
+
+            String bStatus  = tblPrescriptionDetails.getValueAt(r, column + 5).toString();
+            int status;
+            if(bStatus == "Active") {
+                status = 1;
+            } else {
+                status = 0;
+            }
+
+            PrescriptionDetails pd = new PrescriptionDetails(drugName, drugDose, 
+                startDate, endDate, frequency, status);
+
+            try {
+                PharmaDB.addPrescriptionDetails(pd);
+            }
+            catch (Exception e) {
+                System.out.println("aqui");
+                System.out.println(e);
+            }    
+        }
+        
+        Prescription p = new Prescription(prescriptionNo, prescribedDoctor, prescribedPatientId, patientName);
         
         try {
-           pid = PharmaDB.addPrescription(prescribedDoctor, patientId, patientName);
-        }
-        catch (Exception e) {
-           System.out.println("1");
-           System.out.println(e);   
-        }
-        System.out.println("Prescription " + pid + " Submitted");
-        */
-        
-        String drugName = tblPrescriptionDetails.getValueAt(row, column).toString();
-        String drugDose = tblPrescriptionDetails.getValueAt(row, column + 1).toString();
-        String frequency = tblPrescriptionDetails.getValueAt(row, column + 2).toString();
-        
-        Date sDate = new Date();
-        Date eDate = new Date();
-        
-        try { 
-            String sdate = tblPrescriptionDetails.getValueAt(row, column + 3).toString();    
-            sDate = formatter.parse(sdate);
-    
-            String edate = tblPrescriptionDetails.getValueAt(row, column + 4).toString();
-            eDate = formatter.parse(edate);
+            PharmaDB.addPrescription(p);
+            System.out.println("Adicionada prescrição");
         } catch (Exception e) {
+            System.out.println("Aqui");
             System.out.println(e);
-        }
-        
-        long startDate = (long) (sDate.getTime());
-        System.out.println("long: " + startDate);
-        
-        long endDate = (long) (eDate.getTime());
-  
-        
-        String bStatus  = tblPrescriptionDetails.getValueAt(row, column + 5).toString();
-        int status;
-        if(bStatus == "Active") {
-            status = 1;
-        } else {
-            status = 0;
-        }
             
-        PrescriptionDetails pd = new PrescriptionDetails(/*prescriptionNo*/drugName, drugDose, 
-            startDate, endDate, frequency, status);
-        
-       
-        try {
-            PharmaDB.addPrescriptionDetails(pd);
-            System.out.println("called addpresdetails function");
         }
-        catch (Exception e) {
-            System.out.println(e);
-        }
-        
-        /*
-        
-        ArrayList<String> drugNames = new ArrayList<String>();
-        drugNames.add(tblPrescriptionDetails.getModel().getValueAt(row, column).toString());
-            for(int i = 0; i < 15; i++) {
-                if (tblPrescriptionDetails.getModel().getValueAt((row + 1), (column)) != null) {
-                    row++;
-                    drugNames.add(tblPrescriptionDetails.getModel().getValueAt(row, column).toString());
-                }
-            };
-        ArrayList<String> drugDoses = new ArrayList<String>();
-        drugDoses.add(tblPrescriptionDetails.getModel().getValueAt(row, (column + 1)).toString());
-            for(int i = 0; i < 15; i++) {
-                if (tblPrescriptionDetails.getModel().getValueAt((row + 1), (column + 1)) != null) {
-                    row++;
-                    drugNames.add(tblPrescriptionDetails.getModel().getValueAt(row, column + 1).toString());
-                }
-            };
-        ArrayList<Date> startDates = new ArrayList<Date>();
-        String date1 = tblPrescriptionDetails.getModel().getValueAt(row, column + 3).toString();
-        Date startDate = null;
-        try {
-            startDate = new SimpleDateFormat("dd/MON/yyyy").parse(date1);
-        } catch (ParseException ex) {
-            Logger.getLogger(PharmaCareGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        ArrayList<Date> endDates = new ArrayList<Date>();
-        String date2 = tblPrescriptionDetails.getModel().getValueAt(row, column + 4).toString();
-        Date endDate = null;
-        try {
-            endDate = new SimpleDateFormat("dd/MON/yyyy").parse(date2);
-        } catch (ParseException ex) {
-            Logger.getLogger(PharmaCareGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        String status = tblPrescriptionDetails.getModel().getValueAt(row, column + 5).toString();
-        int statusInt;
-        if(status.compareTo("Active") == 0) {
-            statusInt = 0;
-        } else {
-            statusInt = 1;
-        }
-                   
-        System.out.println(drugNames.get(0));
-        */    
         
     }//GEN-LAST:event_btnSubmitActionPerformed
 
