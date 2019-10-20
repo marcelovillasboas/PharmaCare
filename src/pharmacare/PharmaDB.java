@@ -20,7 +20,7 @@ public class PharmaDB {
     
     public static int addPrescription(String prescribedDoctor, int prescribedPatientId,
                                                         String patientName) throws Exception {
-       String sqlPrescription = "INSERT INTO prescription (prescriptionNo, prescribedDoctor, prescribedPatientId, patientName) VALUES (prescriptionNoSequence.nextval, ?, ?, ?)";
+       String sqlPrescription = "INSERT INTO prescription (prescriptionNo, prescribedDoctor, prescribedPatientId, patientName) VALUES (prescriptionId.nextval, ?, ?, ?)";
        Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "P@ssw0rd011");
 
        
@@ -47,22 +47,23 @@ public class PharmaDB {
     public static void addPrescriptionDetails(PrescriptionDetails pd) throws Exception {
     
         System.out.println("Enter presdetails");
-        Date startDate = pd.getStartDate();
-        Date endDate = pd.getEndDate();
+        long startDate = pd.getStartDate();
+        long endDate = pd.getEndDate();
         
         // need to fix the date conversion to DB
-        String sqlPrescriptionDetails = "INSERT INTO prescriptionDetails (prescriptionNo, drugName, drugDose, frequency, startDate, endDate, status) VALUES (prescriptionDetailsSeq.nextval, ?, ?, ?, TO_DATE('" + startDate + "', 'dd/MM/yyyy'), TO_DATE('" + endDate + "', 'dd/MM/yyyy'), ?)";
+        String sqlPrescriptionDetails = "INSERT INTO prescriptionDetails (prescriptionNo, drugName, drugDose, frequency, status, sDate, eDate) VALUES (prescriptionId.nextval, ?, ?, ?, ?, ?, ?)";
         Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "P@ssw0rd011");
         System.out.println("presdetails connected");
         
         try {
                         
             PreparedStatement psPresDetails = connection.prepareStatement(sqlPrescriptionDetails);
-            // psPresDetails.setInt(1, pd.getPrescriptionNo());
             psPresDetails.setString(1, pd.getDrugName());
             psPresDetails.setString(2, pd.getDrugDose());
             psPresDetails.setString(3, pd.getFrequency());
             psPresDetails.setInt(4, pd.getStatusOfDose());
+            psPresDetails.setLong(5, startDate);
+            psPresDetails.setLong(6, endDate);
             psPresDetails.executeUpdate();
             
         } catch (Exception e) {

@@ -600,18 +600,24 @@ public class PharmaCareGUI extends javax.swing.JFrame {
         String drugDose = tblPrescriptionDetails.getValueAt(row, column + 1).toString();
         String frequency = tblPrescriptionDetails.getValueAt(row, column + 2).toString();
         
-        Date startDate = new Date();
-        Date endDate = new Date();
+        Date sDate = new Date();
+        Date eDate = new Date();
         
         try { 
             String sdate = tblPrescriptionDetails.getValueAt(row, column + 3).toString();    
-            startDate = formatter.parse(sdate);
+            sDate = formatter.parse(sdate);
     
             String edate = tblPrescriptionDetails.getValueAt(row, column + 4).toString();
-            endDate = formatter.parse(edate);
+            eDate = formatter.parse(edate);
         } catch (Exception e) {
             System.out.println(e);
         }
+        
+        long startDate = (long) (sDate.getTime());
+        System.out.println("long: " + startDate);
+        
+        long endDate = (long) (eDate.getTime());
+  
         
         String bStatus  = tblPrescriptionDetails.getValueAt(row, column + 5).toString();
         int status;

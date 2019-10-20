@@ -20,13 +20,13 @@ public class PrescriptionDetails {
     String drugName;
     // String drugForm;
     String drugDose;
-    Date startDate;
-    Date endDate;
+    long startDate;
+    long endDate;
     String frequency;
     int statusOfDose;
     
     // constructor
-    public PrescriptionDetails(/*int prescriptionNo,*/ String drugName, String drugDose, Date startDate, Date endDate, String frequency, int status) {
+    public PrescriptionDetails(/*int prescriptionNo,*/ String drugName, String drugDose, long startDate, long endDate, String frequency, int status) {
         
         // this.prescriptionNo = prescriptionNo;
         this.drugName = drugName;
@@ -58,11 +58,11 @@ public class PrescriptionDetails {
         return this.drugDose;
     }
     
-    public Date getStartDate() {
+    public long getStartDate() {
         return this.startDate;
     }
     
-    public Date getEndDate() {
+    public long getEndDate() {
         return this.endDate;
     }
     
