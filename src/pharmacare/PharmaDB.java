@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pharmacare;
 
 import java.sql.Connection;
@@ -12,10 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
-/**
- *
- * @author marce
- */
 public class PharmaDB {
     
     public static int addPrescription(Prescription p) throws Exception {
@@ -46,7 +37,6 @@ public class PharmaDB {
         long startDate = pd.getStartDate();
         long endDate = pd.getEndDate();
         
-        // need to fix the date conversion to DB
         String sqlPrescriptionDetails = "INSERT INTO prescriptionDetails (prescriptionNo, drugName, drugDose, frequency, status, sDate, eDate) VALUES (prescriptionId.nextval, ?, ?, ?, ?, ?, ?)";
         Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "P@ssw0rd011");
         
@@ -62,7 +52,7 @@ public class PharmaDB {
             psPresDetails.executeUpdate();
             
         } catch (Exception e) {
-            System.out.println("Didn't enter the prepared statement");
+            System.out.println("Didn't enter prepared statement");
             System.out.println(e);
         }
                 

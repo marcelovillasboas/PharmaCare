@@ -405,41 +405,6 @@ public class PharmaCareGUI extends javax.swing.JFrame {
             isActive = "Not active";
         }
         
-        /*
-        // assign the query into sql variable
-        String sqlPrescription = "INSERT INTO PrescriptionDetails (prescriptionno, drugName, drugDose, frequency, startDate, endDate, status) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        
-        // connect the database 
-        try {
-            
-            // Class.forName("oracle.jdbc.driver.OracleDriver");
-            Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "P@ssw0rd011");
-            int presno = 2;
-            PreparedStatement ps = connection.prepareStatement(sqlPrescription);
-            ps.setInt(1, presno);
-            ps.setString(2, drugName);
-            ps.setString(3, dose);
-            ps.setString(4, frequency);
-            
-            Date sd = new SimpleDateFormat("dd/MM/yyyy").parse(startDate);
-            java.sql.Date sqlStartDate = new java.sql.Date(sd.getTime());
-            
-            Date ed = new SimpleDateFormat("dd/MM/yyyy").parse(endDate);
-            java.sql.Date sqlEndDate = new java.sql.Date(ed.getTime());
-            
-            ps.setDate(5, sqlStartDate);
-            ps.setDate(6, sqlEndDate);
-            ps.setBoolean(7, true);
-            
-            int up = ps.executeUpdate();
-            System.out.println("Updated"); 
-            
-            connection.close();
-            
-        } catch (Exception e) {
-            System.out.println(e); 
-        }*/
-        
         dtm.addRow(new Object[] {
                     drugName, dose, frequency, startDate, endDate, isActive});
         
@@ -497,7 +462,7 @@ public class PharmaCareGUI extends javax.swing.JFrame {
             System.out.println(f);
         }
         
-        System.out.println("Updated");
+        System.out.println("Validated");
         
         
     }//GEN-LAST:event_btnValidateActionPerformed
@@ -515,7 +480,6 @@ public class PharmaCareGUI extends javax.swing.JFrame {
         
         int row = tblPrescriptionDetails.getSelectedRow();
         int column = tblPrescriptionDetails.getSelectedColumn();
-        // System.out.println(column + "  " + row);
         
         if (isSelected == true) {
             
@@ -545,13 +509,7 @@ public class PharmaCareGUI extends javax.swing.JFrame {
                 String startDate = JOptionPane.showInputDialog("Enter the correct start date");
                 tblPrescriptionDetails.getModel().setValueAt(startDate, row, column);
                 
-                // to operate the cancel button at "edit" JOptionPane, you need to have the values stored in a database so you can retriece them
-                
-                /*if ((startDate == null) && (startDate.length() == 0)) {
-                    
-                    startDate = txtStartDate.getText();
-                    
-                }*/
+                // to operate the cancel button at "edit" JOptionPane, you need to have the values stored in a database so you can retrieve them
 
             } else if (column == 4) {
 
@@ -614,6 +572,20 @@ public class PharmaCareGUI extends javax.swing.JFrame {
             } else {
                 status = 0;
             }
+            
+            Prescription p = new Prescription(prescriptionNo, prescribedDoctor, prescribedPatientId, patientName);
+        
+            try {
+                PharmaDB.addPrescription(p);
+                System.out.println("Adicionada prescrição");
+            } catch (Exception e) {
+                System.out.println("Aqui");
+                System.out.println(e);
+
+            }
+            
+            String selectPresNo = "SELECT prescriptionNo FROM prescription WHERE (prescribedPatientId = '" + p.getPrescribedPatientID() + "' AND prescribedDoctor = '" + p.getPrescribedDoctor() + "'";
+            System.out.println(selectPresNo);
 
             PrescriptionDetails pd = new PrescriptionDetails(drugName, drugDose, 
                 startDate, endDate, frequency, status);
@@ -626,18 +598,7 @@ public class PharmaCareGUI extends javax.swing.JFrame {
                 System.out.println(e);
             }    
         }
-        
-        Prescription p = new Prescription(prescriptionNo, prescribedDoctor, prescribedPatientId, patientName);
-        
-        try {
-            PharmaDB.addPrescription(p);
-            System.out.println("Adicionada prescrição");
-        } catch (Exception e) {
-            System.out.println("Aqui");
-            System.out.println(e);
-            
-        }
-        
+               
     }//GEN-LAST:event_btnSubmitActionPerformed
 
 
