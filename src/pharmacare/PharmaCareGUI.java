@@ -22,6 +22,8 @@ public class PharmaCareGUI extends javax.swing.JFrame {
 
     // define table model
     DefaultTableModel dtm = new DefaultTableModel();
+    
+    // define date format
     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
     Date date = new Date();
     
@@ -542,6 +544,16 @@ public class PharmaCareGUI extends javax.swing.JFrame {
         String prescribedDoctor = txtDoctorName.getText();
         String patientName = txtPatientName.getText();
         int prescriptionNo = 0;
+        
+         Prescription p = new Prescription(prescriptionNo, prescribedDoctor, prescribedPatientId, patientName);
+        
+            try {
+                PharmaDB.addPrescription(p);
+                System.out.println("prescription added");
+            } catch (Exception e) {
+                System.out.println("Aqui");
+                System.out.println(e);
+    }
                 
         for(int r = 0; r < row; r++) {
             String drugName = tblPrescriptionDetails.getValueAt(r, column).toString();
@@ -572,20 +584,6 @@ public class PharmaCareGUI extends javax.swing.JFrame {
             } else {
                 status = 0;
             }
-            
-            Prescription p = new Prescription(prescriptionNo, prescribedDoctor, prescribedPatientId, patientName);
-        
-            try {
-                PharmaDB.addPrescription(p);
-                System.out.println("Adicionada prescrição");
-            } catch (Exception e) {
-                System.out.println("Aqui");
-                System.out.println(e);
-
-            }
-            
-            String selectPresNo = "SELECT prescriptionNo FROM prescription WHERE (prescribedPatientId = '" + p.getPrescribedPatientID() + "' AND prescribedDoctor = '" + p.getPrescribedDoctor() + "'";
-            System.out.println(selectPresNo);
 
             PrescriptionDetails pd = new PrescriptionDetails(drugName, drugDose, 
                 startDate, endDate, frequency, status);
@@ -594,10 +592,11 @@ public class PharmaCareGUI extends javax.swing.JFrame {
                 PharmaDB.addPrescriptionDetails(pd);
             }
             catch (Exception e) {
-                System.out.println("aqui");
+                System.out.println("add prescription details error");
                 System.out.println(e);
-            }    
+            }
         }
+       
                
     }//GEN-LAST:event_btnSubmitActionPerformed
 

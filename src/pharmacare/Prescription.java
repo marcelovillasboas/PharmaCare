@@ -55,4 +55,5 @@ public class Prescription {
     public boolean getStatusOfPrescription() {
         return this.statusOfPrescription;
     }
+    
 }

@@ -49,6 +49,11 @@ public class MenuGUI extends javax.swing.JFrame {
         });
 
         btnEditPrescription.setText("Edit Prescription");
+        btnEditPrescription.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditPrescriptionActionPerformed(evt);
+            }
+        });
 
         btnDeletePrescription.setText("Delete Prescription");
 
@@ -109,6 +114,11 @@ public class MenuGUI extends javax.swing.JFrame {
         new PharmaCareGUI().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnAddPrescriptionActionPerformed
+
+    private void btnEditPrescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditPrescriptionActionPerformed
+        new EditPrescriptionGUI().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnEditPrescriptionActionPerformed
 
     /**
      * @param args the command line arguments

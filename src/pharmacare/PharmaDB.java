@@ -10,26 +10,26 @@ import java.util.Date;
 public class PharmaDB {
     
     public static int addPrescription(Prescription p) throws Exception {
-       String sqlPrescription = "INSERT INTO prescription (prescriptionNo, prescribedDoctor, prescribedPatientId, patientName) VALUES (prescriptionId.nextval, ?, ?, ?)";
-       Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "P@ssw0rd011");
+        String sqlPrescription = "INSERT INTO prescription (prescriptionNo, prescribedDoctor, prescribedPatientId, patientName) VALUES (prescriptionId.nextval, ?, ?, ?)";
+        Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "P@ssw0rd011");
 
-       try {
-           PreparedStatement psPrescription = connection.prepareStatement(sqlPrescription, PreparedStatement.RETURN_GENERATED_KEYS);
-           psPrescription.setString(1, p.getPrescribedDoctor());
-           psPrescription.setInt(2, p.getPrescribedPatientID());
-           psPrescription.setString(3, p.getPatientName());
-           psPrescription.executeUpdate();
-           ResultSet rs = psPrescription.getGeneratedKeys();
-           
-           if (rs.next()) {
-               return (rs.getInt(1));
-           } else {
-               return -1;
-           }
-           
-       } catch (SQLException e) {
-           throw new Exception(e);
-       }
+        try {
+            PreparedStatement psPrescription = connection.prepareStatement(sqlPrescription, PreparedStatement.RETURN_GENERATED_KEYS);
+            psPrescription.setString(1, p.getPrescribedDoctor());
+            psPrescription.setInt(2, p.getPrescribedPatientID());
+            psPrescription.setString(3, p.getPatientName());
+            psPrescription.executeUpdate();
+            ResultSet rs = psPrescription.getGeneratedKeys();
+
+            if (rs.next()) {
+                return (rs.getInt(1));
+            } else {
+                return -1;
+            }
+
+        } catch (SQLException e) {
+            throw new Exception(e);
+        }
     }
     
     public static void addPrescriptionDetails(PrescriptionDetails pd) throws Exception {
