@@ -11,9 +11,8 @@ import javax.swing.JOptionPane;
 public class PrescriptionDetails {
     
     // declare class variables
-    //int prescriptionNo;
+    int prescriptionNo;
     String drugName;
-    // String drugForm;
     String drugDose;
     long startDate;
     long endDate;
@@ -21,8 +20,9 @@ public class PrescriptionDetails {
     int statusOfDose;
     
     // constructor
-    public PrescriptionDetails(String drugName, String drugDose, long startDate, long endDate, String frequency, int status) {
+    public PrescriptionDetails(int prescriptionNo, String drugName, String drugDose, long startDate, long endDate, String frequency, int status) {
         
+        this.prescriptionNo = prescriptionNo;
         this.drugName = drugName;
         this.drugDose = drugDose;
         this.startDate = startDate;
@@ -55,6 +55,10 @@ public class PrescriptionDetails {
     
     public int getStatusOfDose() {
         return this.statusOfDose;
+    }
+    
+    public int getPrescriptionNo() {
+        return this.prescriptionNo;
     }
     
 }

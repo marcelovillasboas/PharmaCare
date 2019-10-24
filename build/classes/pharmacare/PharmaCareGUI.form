@@ -280,9 +280,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtPrescriptionId">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtPatientId">
     </Component>
@@ -346,17 +343,16 @@
     <Component class="javax.swing.JComboBox" name="cmbFrequency">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="7">
+          <StringArray count="3">
             <StringItem index="0" value="Once a day"/>
             <StringItem index="1" value="Twice a day"/>
             <StringItem index="2" value="Three times a day"/>
-            <StringItem index="3" value="Once a week"/>
-            <StringItem index="4" value="Twice a week"/>
-            <StringItem index="5" value="Three times a week"/>
-            <StringItem index="6" value="Other"/>
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbFrequencyActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>

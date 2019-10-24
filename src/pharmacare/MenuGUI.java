@@ -31,7 +31,7 @@ public class MenuGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnAddPrescription = new javax.swing.JButton();
         btnEditPrescription = new javax.swing.JButton();
-        btnDeletePrescription = new javax.swing.JButton();
+        btnDrugReports = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
@@ -55,7 +55,12 @@ public class MenuGUI extends javax.swing.JFrame {
             }
         });
 
-        btnDeletePrescription.setText("Delete Prescription");
+        btnDrugReports.setText("Drug reports");
+        btnDrugReports.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDrugReportsActionPerformed(evt);
+            }
+        });
 
         btnExit.setText("Exit");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
@@ -78,10 +83,10 @@ public class MenuGUI extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(140, 140, 140)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnDeletePrescription, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnDrugReports, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnEditPrescription, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnAddPrescription, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(0, 125, Short.MAX_VALUE))
+                        .addGap(0, 137, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnExit)))
@@ -97,7 +102,7 @@ public class MenuGUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnEditPrescription)
                 .addGap(18, 18, 18)
-                .addComponent(btnDeletePrescription)
+                .addComponent(btnDrugReports)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(btnExit)
                 .addContainerGap())
@@ -119,6 +124,11 @@ public class MenuGUI extends javax.swing.JFrame {
         new EditPrescriptionGUI().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnEditPrescriptionActionPerformed
+
+    private void btnDrugReportsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDrugReportsActionPerformed
+        new DrugReportsGUI().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnDrugReportsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -157,7 +167,7 @@ public class MenuGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddPrescription;
-    private javax.swing.JButton btnDeletePrescription;
+    private javax.swing.JButton btnDrugReports;
     private javax.swing.JButton btnEditPrescription;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton jButton1;

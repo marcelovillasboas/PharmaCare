@@ -10,6 +10,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -18,6 +20,10 @@ public class EditPrescriptionGUI extends javax.swing.JFrame {
     
     // define table model
     DefaultTableModel dtm = new DefaultTableModel();
+    
+    // define date format
+    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+    Date date = new Date();
 
     public EditPrescriptionGUI() {
         initComponents();
@@ -48,9 +54,8 @@ public class EditPrescriptionGUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDrugs = new javax.swing.JTable();
-        btnEditName = new javax.swing.JButton();
-        btnEditDoctor = new javax.swing.JButton();
         btnEditTable = new javax.swing.JButton();
+        btnSubmit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,7 +70,11 @@ public class EditPrescriptionGUI extends javax.swing.JFrame {
 
         lblPatientName.setText("Patient Name:");
 
+        txtPatientName.setEditable(false);
+
         lblDoctor.setText("Responsible Doctor:");
+
+        txtDoctor.setEditable(false);
 
         btnExit.setText("Exit");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
@@ -89,24 +98,17 @@ public class EditPrescriptionGUI extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblDrugs);
 
-        btnEditName.setText("Change");
-        btnEditName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditNameActionPerformed(evt);
-            }
-        });
-
-        btnEditDoctor.setText("Change");
-        btnEditDoctor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditDoctorActionPerformed(evt);
-            }
-        });
-
         btnEditTable.setText("Edit field");
         btnEditTable.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditTableActionPerformed(evt);
+            }
+        });
+
+        btnSubmit.setText("Submit");
+        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitActionPerformed(evt);
             }
         });
 
@@ -119,31 +121,27 @@ public class EditPrescriptionGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnExit)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(lblPatientName)
-                                    .addComponent(lblDoctor)
-                                    .addComponent(jLabel2))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtPrescriptionNo)
-                                    .addComponent(txtPatientName)
-                                    .addComponent(txtDoctor))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(btnEditTable))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(btnEditDoctor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnEditName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnValidate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                        .addContainerGap())))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSubmit))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(lblPatientName)
+                            .addComponent(lblDoctor)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPrescriptionNo)
+                            .addComponent(txtPatientName)
+                            .addComponent(txtDoctor))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(btnEditTable))
+                            .addComponent(btnValidate))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,21 +154,21 @@ public class EditPrescriptionGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPatientName)
-                    .addComponent(txtPatientName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEditName))
+                    .addComponent(txtPatientName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDoctor)
-                    .addComponent(txtDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEditDoctor))
-                .addGap(12, 12, 12)
+                    .addComponent(txtDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(btnEditTable))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(btnExit)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnExit)
+                    .addComponent(btnSubmit))
                 .addContainerGap())
         );
 
@@ -209,9 +207,9 @@ public class EditPrescriptionGUI extends javax.swing.JFrame {
             ResultSet rsPrinter = psPrinter.executeQuery();
             
             while(rsPrinter.next()) {
-                patientName = rsPrinter.getString(5);
-                prescribedDoctor = rsPrinter.getString(3);
-                prescribedPatientId = rsPrinter.getInt(4);
+                patientName = rsPrinter.getString(4);
+                prescribedDoctor = rsPrinter.getString(2);
+                prescribedPatientId = rsPrinter.getInt(3);
                 txtPatientName.setText(patientName);
                 txtDoctor.setText(prescribedDoctor);
             }
@@ -220,11 +218,11 @@ public class EditPrescriptionGUI extends javax.swing.JFrame {
             System.out.println(e);
         }
         
-        for(int i = 0; i < 15; i++) {
+        //for(int i = 0; i < 15; i++) {
             try {
                 Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "P@ssw0rd011");
                 PreparedStatement psPrinterDetails = connection.prepareStatement(sqlDetailsPrinter);
-                psPrinterDetails.setInt(1, prescriptionNo + i);
+                psPrinterDetails.setInt(1, prescriptionNo);
                 ResultSet rsDetails = psPrinterDetails.executeQuery();
 
                 while(rsDetails.next()) {
@@ -241,18 +239,19 @@ public class EditPrescriptionGUI extends javax.swing.JFrame {
                         status = "Not active";
                     }
 
-                    Date startDate = new Date(sDate * 1000);
-                    Date endDate = new Date(eDate * 1000);
-
+                    Date longStartDate = new Date(sDate);
+                    Date longEndDate = new Date(eDate);
+                    String startDate = formatter.format(longStartDate);
+                    String endDate = formatter.format(longEndDate);
+                    
                     dtm.addRow(new Object[] {drugName, drugDose, frequency, startDate, endDate, status});
-
                 }    
                 
             } catch (SQLException e) {
                 System.out.println(e);
             }
 
-        }
+        //}
         
         
     }//GEN-LAST:event_btnValidateActionPerformed
@@ -260,16 +259,6 @@ public class EditPrescriptionGUI extends javax.swing.JFrame {
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
-
-    private void btnEditNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditNameActionPerformed
-        String patientName = JOptionPane.showInputDialog("Enter a new patient name");
-        txtPatientName.setText(patientName);
-    }//GEN-LAST:event_btnEditNameActionPerformed
-
-    private void btnEditDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditDoctorActionPerformed
-        String doctorName = JOptionPane.showInputDialog("Enter a new doctor name");
-        txtDoctor.setText(doctorName);
-    }//GEN-LAST:event_btnEditDoctorActionPerformed
 
     private void btnEditTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditTableActionPerformed
         
@@ -312,6 +301,44 @@ public class EditPrescriptionGUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnEditTableActionPerformed
 
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
+        
+        // class variables
+        int row = tblDrugs.getModel().getRowCount();
+        
+        try {
+            for (int r = 0; r < row; r++) {
+                System.out.println(r);
+                String drugName = tblDrugs.getValueAt(r, 0).toString();
+                String drugDose = tblDrugs.getValueAt(r, 1).toString();
+                String frequency = tblDrugs.getValueAt(r, 2).toString();
+                String sStatus = tblDrugs.getValueAt(r, 5).toString();
+                String sStartDate = tblDrugs.getValueAt(r, 3).toString();
+                String sEndDate = tblDrugs.getValueAt(r, 4).toString();
+                
+                Date date1 = formatter.parse(sStartDate);
+                Date date2 = formatter.parse(sEndDate);
+                long startDate = date1.getTime();
+                long endDate = date2.getTime();
+                System.out.println("String start date: " + sStartDate + "     Date start date: " + date1 + "    long start date: " + startDate);
+                
+                int status;
+                int prescriptionNo = Integer.parseInt(txtPrescriptionNo.getText());
+                if (sStatus == "Active") {
+                    status = 1;
+                } else {
+                    status = 0;
+                }
+                
+                Drugs d = new Drugs(drugName, prescriptionNo, drugDose, frequency, startDate, endDate, status);
+        
+                PharmaDB.editDrugs(d);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_btnSubmitActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -348,10 +375,9 @@ public class EditPrescriptionGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEditDoctor;
-    private javax.swing.JButton btnEditName;
     private javax.swing.JButton btnEditTable;
     private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnSubmit;
     private javax.swing.JButton btnValidate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

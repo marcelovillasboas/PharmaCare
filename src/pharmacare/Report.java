@@ -1,36 +1,39 @@
 package pharmacare;
 
-public class Drugs {
+public class Report {
     
+    long reportDate;
     String drugName;
-    String drugDose;
+    String dose;
     long startDate;
     long endDate;
     String frequency;
     int status;
-    String colunm;
-    int prescriptionNo;
     
     // constructor
-    public Drugs(String drugName, int prescriptionNo, String drugDose, String frequency,  long startDate, long endDate, int status) {
+    public Report(long reportDate, String drugName, String dose, long startDate, long endDate, String frequency, int status) {
         
-        this.prescriptionNo = prescriptionNo;
-        this.drugDose = drugDose;
-        this.frequency = frequency;
+        this.reportDate = reportDate;
+        this.drugName = drugName;
+        this.dose = dose;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.frequency = frequency;
         this.status = status;
-        this.drugName = drugName;
+        
     }
     
     // methods
+    public long getReportDate() {
+        return this.reportDate;
+    }
     
     public String getDrugName() {
         return this.drugName;
     }
     
-    public String getDrugDose() {
-        return this.drugDose;
+    public String getDose() {
+        return this.dose;
     }
     
     public long getStartDate() {
@@ -45,19 +48,8 @@ public class Drugs {
         return this.frequency;
     }
     
-    public int getDose() {
-        return this.status;
-    }
-    
-    public String getColunm() {
-        return this.colunm;
-    }
-    
-    public int getPrescriptionNo() {
-        return this.prescriptionNo;
-    }
-    
     public int getStatus() {
         return this.status;
     }
+    
 }

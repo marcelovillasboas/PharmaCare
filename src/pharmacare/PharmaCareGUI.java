@@ -13,6 +13,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -131,8 +132,6 @@ public class PharmaCareGUI extends javax.swing.JFrame {
 
         lblPatientID.setText("Patient ID");
 
-        txtPrescriptionId.setEditable(false);
-
         btnValidate.setText("Validate");
         btnValidate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,7 +157,12 @@ public class PharmaCareGUI extends javax.swing.JFrame {
 
         lblFrequency.setText("Frequency");
 
-        cmbFrequency.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Once a day", "Twice a day", "Three times a day", "Once a week", "Twice a week", "Three times a week", "Other" }));
+        cmbFrequency.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Once a day", "Twice a day", "Three times a day" }));
+        cmbFrequency.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbFrequencyActionPerformed(evt);
+            }
+        });
 
         lblStartDate.setText("Start Date");
 
@@ -439,10 +443,8 @@ public class PharmaCareGUI extends javax.swing.JFrame {
             
             while(rsPatient.next()) {
                 patientName = rsPatient.getString(2);
-                prescriptionNo = rsPatient.getString(3);
-                patientType = rsPatient.getInt(4);
+                patientType = rsPatient.getInt(3);
                 txtPatientName.setText(patientName);
-                txtPrescriptionId.setText(prescriptionNo);
             }
             
         } catch (SQLException e) {
@@ -543,9 +545,10 @@ public class PharmaCareGUI extends javax.swing.JFrame {
         int prescribedPatientId = Integer.parseInt(txtPatientId.getText());
         String prescribedDoctor = txtDoctorName.getText();
         String patientName = txtPatientName.getText();
-        int prescriptionNo = 0;
+        int prescriptionNo = Integer.parseInt(txtPrescriptionId.getText());
         
          Prescription p = new Prescription(prescriptionNo, prescribedDoctor, prescribedPatientId, patientName);
+         System.out.println(prescriptionNo);
         
             try {
                 PharmaDB.addPrescription(p);
@@ -559,7 +562,6 @@ public class PharmaCareGUI extends javax.swing.JFrame {
             String drugName = tblPrescriptionDetails.getValueAt(r, column).toString();
             String drugDose = tblPrescriptionDetails.getValueAt(r, column + 1).toString();
             String frequency = tblPrescriptionDetails.getValueAt(r, column + 2).toString();
-                
             Date sDate = new Date();
             Date eDate = new Date();
 
@@ -573,10 +575,10 @@ public class PharmaCareGUI extends javax.swing.JFrame {
             } catch (Exception e) {
                 System.out.println(e);
             }
-
+            
             long startDate = (long) (sDate.getTime());        
             long endDate = (long) (eDate.getTime());
-
+            
             String bStatus  = tblPrescriptionDetails.getValueAt(r, column + 5).toString();
             int status;
             if(bStatus == "Active") {
@@ -585,11 +587,12 @@ public class PharmaCareGUI extends javax.swing.JFrame {
                 status = 0;
             }
 
-            PrescriptionDetails pd = new PrescriptionDetails(drugName, drugDose, 
+            PrescriptionDetails pd = new PrescriptionDetails(prescriptionNo, drugName, drugDose, 
                 startDate, endDate, frequency, status);
+            System.out.println(p.getPrescriptionNo());
 
             try {
-                PharmaDB.addPrescriptionDetails(pd);
+                PharmaDB.addPrescriptionDetails(pd, p);
             }
             catch (Exception e) {
                 System.out.println("add prescription details error");
@@ -599,6 +602,10 @@ public class PharmaCareGUI extends javax.swing.JFrame {
        
                
     }//GEN-LAST:event_btnSubmitActionPerformed
+
+    private void cmbFrequencyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbFrequencyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbFrequencyActionPerformed
 
 
     public static void main(String args[]) {
