@@ -248,6 +248,9 @@ public class DrugReportsGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnShowReportActionPerformed
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
+        
+        dtm2.setRowCount(0);
+        
         String cmbSelection = cmbShift.getSelectedItem().toString();
         int row = dtm.getRowCount();
         
@@ -255,14 +258,18 @@ public class DrugReportsGUI extends javax.swing.JFrame {
             String frequency = tblReport.getValueAt(r, 2).toString();
             String drugName = tblReport.getValueAt(r, 0).toString();
             String dose = tblReport.getValueAt(r, 1).toString();
-            System.out.println("Frequency: " + frequency + "    drug name: " + drugName + "     dose: " + dose);
-            if((frequency != "Once a day") && (cmbSelection == "Afternoon")) {
-                // System.out.println(r);
+            String once = "Once a day";
+            String twice = "Twice a day";
+            System.out.println("Frequency:" + frequency + "drug name:" + drugName + "dose:" + dose);
+            if (cmbSelection == "Morning") {
+                dtm2.addRow(new Object[] {drugName, dose});
+                
+            } else if((frequency.contentEquals(once) == false) && (cmbSelection == "Afternoon")) {
+                System.out.println(r);
+                dtm2.addRow(new Object[] {drugName, dose});
+            } else if((cmbSelection == "Evening") && (frequency.contentEquals(once) == false) && (frequency.contentEquals(twice)) == false) {
                 dtm2.addRow(new Object[] {drugName, dose});
             }
-//             else if((cmbSelection == "Evening") && (frequency != "Once a day") && (frequency != "Twice a day")) {
-//                dtm2.addRow(new Object[] {drugName, dose});
-//            }
         }
         
         

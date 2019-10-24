@@ -538,6 +538,7 @@ public class PharmaCareGUI extends javax.swing.JFrame {
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         
+        dtm.setRowCount(0);
         // class variables
         int row = tblPrescriptionDetails.getModel().getRowCount();
         int column = 0;
