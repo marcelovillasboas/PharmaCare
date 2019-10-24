@@ -26,25 +26,6 @@ public class PharmaDB {
         }
     }
     
-    /*public static void getPrescriptionNo(Prescription p) throws Exception {
-        String sqlPresNo = "SELECT prescriptionNo FROM prescription WHERE (patientName = ? AND prescribedDoctor = ?)";
-        Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "P@ssw0rd011");
-                
-        try {
-            PreparedStatement psPresNo = connection.prepareStatement(sqlPresNo);
-            psPresNo.setString(1, p.getPatientName());
-            psPresNo.setString(2, p.getPrescribedDoctor());
-            ResultSet rsPresNo = psPresNo.executeQuery();
-            
-            while(rsPresNo.next()) {
-                int prescriptionNo = rsPresNo.getInt(1);
-                
-            }
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }*/
-    
     public static void addPrescriptionDetails(PrescriptionDetails pd, Prescription p) throws Exception {
     
         long startDate = pd.getStartDate();
