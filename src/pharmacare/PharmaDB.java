@@ -28,14 +28,16 @@ public class PharmaDB {
     
     public static void addPrescriptionDetails(PrescriptionDetails pd, Prescription p) throws Exception {
     
+        // class variables
         long startDate = pd.getStartDate();
         long endDate = pd.getEndDate();
         int prescriptionNo;
         
-        
+        // assign SQL query into String variable
         String sqlPrescriptionDetails = "INSERT INTO prescriptionDetails (prescriptionNo, drugName, drugDose, frequency, status, sDate, eDate) VALUES (?, ?, ?, ?, ?, ?, ?)";
         Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "P@ssw0rd011");
         
+        // connect to the database to send details
         try {
                         
             PreparedStatement psPresDetails = connection.prepareStatement(sqlPrescriptionDetails);

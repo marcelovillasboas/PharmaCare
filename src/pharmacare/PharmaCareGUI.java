@@ -479,12 +479,15 @@ public class PharmaCareGUI extends javax.swing.JFrame {
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         
+        // checks if there is any selection in the details table
         boolean isSelected = tblPrescriptionDetails.getSelectionModel().isSelectionEmpty();
         System.out.println(isSelected);
         
+        // get integer values for row and column count
         int row = tblPrescriptionDetails.getSelectedRow();
         int column = tblPrescriptionDetails.getSelectedColumn();
         
+        // if there is no selection, ask user to choose which one should me edited
         if (isSelected == true) {
             
             row = Integer.parseInt(JOptionPane.showInputDialog("Choose a row to edit (the count starts at 0)"));
@@ -492,11 +495,13 @@ public class PharmaCareGUI extends javax.swing.JFrame {
             
         } 
         
+        // if the column is 'drug name', set drugName value
         if (column == 0) {
 
                  String drugName = JOptionPane.showInputDialog("Enter the drug name");
                  tblPrescriptionDetails.getModel().setValueAt(drugName, row, column);
 
+            // if the column is 'dose', set drugDose value
             } else if (column == 1) {
 
                 String dose = JOptionPane.showInputDialog("Enter the correct dose");
@@ -531,6 +536,7 @@ public class PharmaCareGUI extends javax.swing.JFrame {
                 }
             }
 
+            // clears any selection for next edit
             tblPrescriptionDetails.clearSelection();
             System.out.println(isSelected);
         
@@ -538,7 +544,6 @@ public class PharmaCareGUI extends javax.swing.JFrame {
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         
-        dtm.setRowCount(0);
         // class variables
         int row = tblPrescriptionDetails.getModel().getRowCount();
         int column = 0;
@@ -548,9 +553,10 @@ public class PharmaCareGUI extends javax.swing.JFrame {
         String patientName = txtPatientName.getText();
         int prescriptionNo = Integer.parseInt(txtPrescriptionId.getText());
         
-         Prescription p = new Prescription(prescriptionNo, prescribedDoctor, prescribedPatientId, patientName);
-         System.out.println(prescriptionNo);
+        // create new prescription Object
+        Prescription p = new Prescription(prescriptionNo, prescribedDoctor, prescribedPatientId, patientName);
         
+            // add prescription using addPrescription method from PharmaDB
             try {
                 PharmaDB.addPrescription(p);
                 System.out.println("prescription added");
@@ -558,8 +564,10 @@ public class PharmaCareGUI extends javax.swing.JFrame {
                 System.out.println("Aqui");
                 System.out.println(e);
     }
-                
+        
+        // for loop gets content in the details table row by row
         for(int r = 0; r < row; r++) {
+            
             String drugName = tblPrescriptionDetails.getValueAt(r, column).toString();
             String drugDose = tblPrescriptionDetails.getValueAt(r, column + 1).toString();
             String frequency = tblPrescriptionDetails.getValueAt(r, column + 2).toString();
@@ -577,6 +585,7 @@ public class PharmaCareGUI extends javax.swing.JFrame {
                 System.out.println(e);
             }
             
+            // date values are converted to long so they can be easily stored and operated inside the database. when they're retrieved, the conversion happens again at the front-end
             long startDate = (long) (sDate.getTime());        
             long endDate = (long) (eDate.getTime());
             
@@ -588,18 +597,22 @@ public class PharmaCareGUI extends javax.swing.JFrame {
                 status = 0;
             }
 
+            // creates new prescription details object
             PrescriptionDetails pd = new PrescriptionDetails(prescriptionNo, drugName, drugDose, 
                 startDate, endDate, frequency, status);
             System.out.println(p.getPrescriptionNo());
-
+            
+            // add prescription details to database
             try {
                 PharmaDB.addPrescriptionDetails(pd, p);
             }
             catch (Exception e) {
-                System.out.println("add prescription details error");
                 System.out.println(e);
             }
         }
+        
+        // clears prescription details table for next submission
+        dtm.setRowCount(0);
        
                
     }//GEN-LAST:event_btnSubmitActionPerformed

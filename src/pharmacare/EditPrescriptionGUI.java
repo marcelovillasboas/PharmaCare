@@ -177,11 +177,11 @@ public class EditPrescriptionGUI extends javax.swing.JFrame {
 
     private void btnValidateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidateActionPerformed
         
-        
-        txtPatientName.setText("");
-        txtDoctor.setText("");
-        dtm.setRowCount(0);
-        
+        // clear fields
+            txtPatientName.setText("");
+            txtDoctor.setText("");
+            dtm.setRowCount(0);
+            
         // get assigned values for prescriptionPrinter info
         int prescriptionNo = Integer.parseInt(txtPrescriptionNo.getText());
         String prescribedDoctor;
@@ -199,13 +199,14 @@ public class EditPrescriptionGUI extends javax.swing.JFrame {
         String sqlPrinter = "SELECT * FROM prescription WHERE prescriptionNo = ?";
         String sqlDetailsPrinter = "SELECT * FROM prescriptionDetails WHERE prescriptionNo = ?";
         
-        // connect to the database
+        // connect to the database for prescription data
         try {
             Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "P@ssw0rd011");
             PreparedStatement psPrinter = connection.prepareStatement(sqlPrinter);
             psPrinter.setInt(1, prescriptionNo);
             ResultSet rsPrinter = psPrinter.executeQuery();
             
+            // print retrieved values in the correct fields
             while(rsPrinter.next()) {
                 patientName = rsPrinter.getString(4);
                 prescribedDoctor = rsPrinter.getString(2);
@@ -217,14 +218,15 @@ public class EditPrescriptionGUI extends javax.swing.JFrame {
         } catch (SQLException e) {
             System.out.println(e);
         }
-        
-        //for(int i = 0; i < 15; i++) {
+            
+            // connect to the database to get prescription details
             try {
                 Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "P@ssw0rd011");
                 PreparedStatement psPrinterDetails = connection.prepareStatement(sqlDetailsPrinter);
                 psPrinterDetails.setInt(1, prescriptionNo);
                 ResultSet rsDetails = psPrinterDetails.executeQuery();
-
+                
+                // assign values to variables
                 while(rsDetails.next()) {
 
                     drugName = rsDetails.getString(2);
@@ -244,6 +246,7 @@ public class EditPrescriptionGUI extends javax.swing.JFrame {
                     String startDate = formatter.format(longStartDate);
                     String endDate = formatter.format(longEndDate);
                     
+                    // add a new row to the table
                     dtm.addRow(new Object[] {drugName, drugDose, frequency, startDate, endDate, status});
                 }    
                 
@@ -251,9 +254,6 @@ public class EditPrescriptionGUI extends javax.swing.JFrame {
                 System.out.println(e);
             }
 
-        //}
-        
-        
     }//GEN-LAST:event_btnValidateActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed

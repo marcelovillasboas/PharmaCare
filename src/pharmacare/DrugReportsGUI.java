@@ -109,7 +109,7 @@ public class DrugReportsGUI extends javax.swing.JFrame {
             }
         });
 
-        cmbShift.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Morning", "Afternoon", "Evening", "Whole day" }));
+        cmbShift.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Morning", "Afternoon", "Evening" }));
 
         btnExit.setText("Exit");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
@@ -249,11 +249,14 @@ public class DrugReportsGUI extends javax.swing.JFrame {
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         
+        // clears table content
         dtm2.setRowCount(0);
         
+        // get combo box content and row count
         String cmbSelection = cmbShift.getSelectedItem().toString();
         int row = dtm.getRowCount();
         
+        // get table content in different rows
         for(int r = 0; r < row; r++) {
             String frequency = tblReport.getValueAt(r, 2).toString();
             String drugName = tblReport.getValueAt(r, 0).toString();
@@ -261,12 +264,14 @@ public class DrugReportsGUI extends javax.swing.JFrame {
             String once = "Once a day";
             String twice = "Twice a day";
             System.out.println("Frequency:" + frequency + "drug name:" + drugName + "dose:" + dose);
+            
+            // conditions to get previous table content and filter it to the next one
             if (cmbSelection == "Morning") {
                 dtm2.addRow(new Object[] {drugName, dose});
                 
             } else if((frequency.contentEquals(once) == false) && (cmbSelection == "Afternoon")) {
-                System.out.println(r);
                 dtm2.addRow(new Object[] {drugName, dose});
+            
             } else if((cmbSelection == "Evening") && (frequency.contentEquals(once) == false) && (frequency.contentEquals(twice)) == false) {
                 dtm2.addRow(new Object[] {drugName, dose});
             }
