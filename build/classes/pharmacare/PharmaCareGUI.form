@@ -70,10 +70,9 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="btnValidate" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -106,8 +105,8 @@
                                                   <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" attributes="0">
-                                                  <Component id="txtDrugName" max="32767" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="232" max="-2" attributes="0"/>
+                                                  <Component id="cmbDrugs" max="32767" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="237" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <Group type="103" groupAlignment="1" attributes="0">
@@ -143,7 +142,7 @@
                           <Component id="txtStartDate" alignment="1" max="32767" attributes="0"/>
                           <Component id="txtDose" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtEndDate" alignment="0" max="32767" attributes="0"/>
-                          <Component id="cmbPatientType" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtPatientType" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
@@ -191,7 +190,7 @@
                   <Component id="lblPatientID" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtPatientId" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblPatientType" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="cmbPatientType" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPatientType" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -204,13 +203,10 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnValidate" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <Component id="txtDate" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="9" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblStatus" alignment="1" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
@@ -228,10 +224,15 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="lblDrugName" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtDrugName" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="lblDrugName" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="cmbDrugs" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="cmbFrequency" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblFrequency" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -280,15 +281,13 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtPrescriptionId">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtPatientId">
-    </Component>
-    <Component class="javax.swing.JButton" name="btnValidate">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Validate"/>
-      </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnValidateActionPerformed"/>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtPatientIdFocusLost"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblDoctorID">
@@ -297,6 +296,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtDoctorId">
+      <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtDoctorIdFocusLost"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
@@ -444,8 +446,6 @@
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtDrugName">
-    </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane4">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -494,13 +494,15 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JComboBox" name="cmbPatientType">
+    <Component class="javax.swing.JTextField" name="txtPatientType">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cmbDrugs">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="2">
-            <StringItem index="0" value="Indoor"/>
-            <StringItem index="1" value="Outdoor"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
       <AuxValues>
