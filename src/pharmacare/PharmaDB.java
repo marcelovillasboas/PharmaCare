@@ -1,3 +1,12 @@
+/**********************************************************************/
+// Filename: PharmaDB.java
+// Purpose: To provide database connectivity and SQL processing
+// Author: Marcelo Villas Boas
+// Version: 1.0
+// Date: 19/11/2019
+// Tests: 
+/**********************************************************************/
+
 package pharmacare;
 
 import java.sql.Connection;
@@ -7,12 +16,65 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class PharmaDB {
+    
+    static String db_usrName = "";
+    static String db_usrPwd = "";
+    
+    public static void getDBUsrIDPwd(String csvFile)
+    {
+        db_usrName = "";
+        db_usrPwd = "";
+        
+        BufferedReader br = null;
+        String line = "";
+        String cvsSplitBy = ",";
+
+        try {
+
+            br = new BufferedReader(new FileReader(csvFile));
+            while ((line = br.readLine()) != null) 
+            {
+
+                // use comma as separator
+                String[] usrInfo = line.split(cvsSplitBy);
+                //System.out.println("[usrid= " + usrInfo[0] + " , usrpwd=" + usrInfo[1] + "]");
+                db_usrName = usrInfo[0];
+                db_usrPwd = usrInfo[1];
+            }
+
+        } 
+        catch (FileNotFoundException e) 
+        {
+            // file not found
+            e.printStackTrace();
+        } 
+        catch (IOException e) 
+        {
+            // file found, but not propertly formatted
+            e.printStackTrace();
+        }
+        catch (Exception e)
+        {
+            // any other exception --- e.g. null object
+            e.printStackTrace();
+        }
+	
+    }
     
     public static void addPrescription(Prescription p) throws Exception {
         String sqlPrescription = "INSERT INTO prescription (prescriptionNo, prescribedDoctor, prescribedPatientId, patientName) VALUES (?, ?, ?, ?)";
-        Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "P@ssw0rd011");
-
+        //Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "P@ssw0rd011");
+        
+        final String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
+        getDBUsrIDPwd("config.txt");
+        Connection connection = DriverManager.getConnection(DB_URL, db_usrName, db_usrPwd);
+    
         try {
             PreparedStatement psPrescription = connection.prepareStatement(sqlPrescription);
             psPrescription.setInt(1, p.getPrescriptionNo());

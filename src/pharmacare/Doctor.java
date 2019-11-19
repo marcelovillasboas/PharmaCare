@@ -1,3 +1,12 @@
+/**********************************************************************/
+// Filename: PharmaDB.java
+// Purpose: To provide database connectivity and SQL processing
+// Author: Marcelo Villas Boas
+// Version: 1.0
+// Date: 19/11/2019
+// Tests: 
+/**********************************************************************/
+
 package pharmacare;
 
 public class Doctor {
