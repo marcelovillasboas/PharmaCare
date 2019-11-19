@@ -461,7 +461,7 @@ public class PharmaCareGUI extends javax.swing.JFrame {
         // txtDrugName.setText(null);
         txtDose.setText(null);
         chkActive.setSelected(false);
-        
+                
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -674,8 +674,15 @@ public class PharmaCareGUI extends javax.swing.JFrame {
             System.out.println(e);
         }
     }//GEN-LAST:event_txtPatientIdFocusLost
-
-
+      
+    public static boolean checkMg(String dose) {
+        if(dose.substring(dose.length() -2) == "mg") {
+           return true;
+        } else {
+            return false;
+        }
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
