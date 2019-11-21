@@ -49,8 +49,8 @@ public class Drugs {
         return this.status;
     }
     
-    public String getColunm() {
-        return this.colunm;
+    public String getColumn() {
+        return this.column;
     }
     
     public int getPrescriptionNo() {
